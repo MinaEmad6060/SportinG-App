@@ -1,0 +1,829 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		51F3F5422BFB790C000EA9B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5412BFB790C000EA9B9 /* AppDelegate.swift */; };
+		51F3F5442BFB790C000EA9B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5432BFB790C000EA9B9 /* SceneDelegate.swift */; };
+		51F3F5492BFB790C000EA9B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51F3F5472BFB790C000EA9B9 /* Main.storyboard */; };
+		51F3F54C2BFB790C000EA9B9 /* SportinG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F54A2BFB790C000EA9B9 /* SportinG.xcdatamodeld */; };
+		51F3F54E2BFB790F000EA9B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51F3F54D2BFB790F000EA9B9 /* Assets.xcassets */; };
+		51F3F5512BFB790F000EA9B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51F3F54F2BFB790F000EA9B9 /* LaunchScreen.storyboard */; };
+		51F3F55C2BFB7910000EA9B9 /* SportinGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F55B2BFB7910000EA9B9 /* SportinGTests.swift */; };
+		51F3F5662BFB7910000EA9B9 /* SportinGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5652BFB7910000EA9B9 /* SportinGUITests.swift */; };
+		51F3F5682BFB7910000EA9B9 /* SportinGUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5672BFB7910000EA9B9 /* SportinGUITestsLaunchTests.swift */; };
+		51F3F57B2BFB7D1E000EA9B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F57A2BFB7D1E000EA9B9 /* ViewController.swift */; };
+		6A5D9322FC274F98483AF37D /* Pods_SportinG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CB26A79EE4BC41498EF778 /* Pods_SportinG.framework */; };
+		8915B66B1AE1DE9AF69C00FA /* Pods_SportinG_SportinGUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3F52FA8F261FA28B669F5A /* Pods_SportinG_SportinGUITests.framework */; };
+		A27205E4982B10D1B5B67BF7 /* Pods_SportinGTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDDFD2E46A761801AE2B47E /* Pods_SportinGTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		51F3F5582BFB7910000EA9B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51F3F5362BFB790C000EA9B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51F3F53D2BFB790C000EA9B9;
+			remoteInfo = SportinG;
+		};
+		51F3F5622BFB7910000EA9B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51F3F5362BFB790C000EA9B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51F3F53D2BFB790C000EA9B9;
+			remoteInfo = SportinG;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		222623357EBD0B53DE792960 /* Pods-SportinG-SportinGUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinG-SportinGUITests.debug.xcconfig"; path = "Target Support Files/Pods-SportinG-SportinGUITests/Pods-SportinG-SportinGUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		22DE16C8626F4F0FC5346A7C /* Pods-SportinG-SportinGUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinG-SportinGUITests.release.xcconfig"; path = "Target Support Files/Pods-SportinG-SportinGUITests/Pods-SportinG-SportinGUITests.release.xcconfig"; sourceTree = "<group>"; };
+		23DF2B1EF68DCD4465067401 /* Pods-SportinGTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinGTests.debug.xcconfig"; path = "Target Support Files/Pods-SportinGTests/Pods-SportinGTests.debug.xcconfig"; sourceTree = "<group>"; };
+		430E87C34D720D50D2A9228F /* Pods-SportinG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinG.debug.xcconfig"; path = "Target Support Files/Pods-SportinG/Pods-SportinG.debug.xcconfig"; sourceTree = "<group>"; };
+		51F3F53E2BFB790C000EA9B9 /* SportinG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportinG.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51F3F5412BFB790C000EA9B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		51F3F5432BFB790C000EA9B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		51F3F5482BFB790C000EA9B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		51F3F54B2BFB790C000EA9B9 /* SportinG.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportinG.xcdatamodel; sourceTree = "<group>"; };
+		51F3F54D2BFB790F000EA9B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51F3F5502BFB790F000EA9B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		51F3F5522BFB790F000EA9B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51F3F5572BFB7910000EA9B9 /* SportinGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportinGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		51F3F55B2BFB7910000EA9B9 /* SportinGTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportinGTests.swift; sourceTree = "<group>"; };
+		51F3F5612BFB7910000EA9B9 /* SportinGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportinGUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		51F3F5652BFB7910000EA9B9 /* SportinGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportinGUITests.swift; sourceTree = "<group>"; };
+		51F3F5672BFB7910000EA9B9 /* SportinGUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportinGUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		51F3F57A2BFB7D1E000EA9B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		55CB26A79EE4BC41498EF778 /* Pods_SportinG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportinG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F3F52FA8F261FA28B669F5A /* Pods_SportinG_SportinGUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportinG_SportinGUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7235FCC445E73B62F5745255 /* Pods-SportinGTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinGTests.release.xcconfig"; path = "Target Support Files/Pods-SportinGTests/Pods-SportinGTests.release.xcconfig"; sourceTree = "<group>"; };
+		9876E035D472461911BA6AAD /* Pods-SportinG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinG.release.xcconfig"; path = "Target Support Files/Pods-SportinG/Pods-SportinG.release.xcconfig"; sourceTree = "<group>"; };
+		EDDDFD2E46A761801AE2B47E /* Pods_SportinGTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportinGTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		51F3F53B2BFB790C000EA9B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A5D9322FC274F98483AF37D /* Pods_SportinG.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51F3F5542BFB7910000EA9B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A27205E4982B10D1B5B67BF7 /* Pods_SportinGTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51F3F55E2BFB7910000EA9B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8915B66B1AE1DE9AF69C00FA /* Pods_SportinG_SportinGUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		27BBDC33B82590EE9D399119 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				430E87C34D720D50D2A9228F /* Pods-SportinG.debug.xcconfig */,
+				9876E035D472461911BA6AAD /* Pods-SportinG.release.xcconfig */,
+				222623357EBD0B53DE792960 /* Pods-SportinG-SportinGUITests.debug.xcconfig */,
+				22DE16C8626F4F0FC5346A7C /* Pods-SportinG-SportinGUITests.release.xcconfig */,
+				23DF2B1EF68DCD4465067401 /* Pods-SportinGTests.debug.xcconfig */,
+				7235FCC445E73B62F5745255 /* Pods-SportinGTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2D116E124588DD934620FF5F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55CB26A79EE4BC41498EF778 /* Pods_SportinG.framework */,
+				5F3F52FA8F261FA28B669F5A /* Pods_SportinG_SportinGUITests.framework */,
+				EDDDFD2E46A761801AE2B47E /* Pods_SportinGTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		51F3F5352BFB790C000EA9B9 = {
+			isa = PBXGroup;
+			children = (
+				51F3F5402BFB790C000EA9B9 /* SportinG */,
+				51F3F55A2BFB7910000EA9B9 /* SportinGTests */,
+				51F3F5642BFB7910000EA9B9 /* SportinGUITests */,
+				51F3F53F2BFB790C000EA9B9 /* Products */,
+				27BBDC33B82590EE9D399119 /* Pods */,
+				2D116E124588DD934620FF5F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		51F3F53F2BFB790C000EA9B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				51F3F53E2BFB790C000EA9B9 /* SportinG.app */,
+				51F3F5572BFB7910000EA9B9 /* SportinGTests.xctest */,
+				51F3F5612BFB7910000EA9B9 /* SportinGUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		51F3F5402BFB790C000EA9B9 /* SportinG */ = {
+			isa = PBXGroup;
+			children = (
+				51F3F5772BFB7C5E000EA9B9 /* Modules */,
+				51F3F5762BFB7AE6000EA9B9 /* View */,
+				51F3F5752BFB7AA1000EA9B9 /* Services */,
+				51F3F5742BFB7A9A000EA9B9 /* Model */,
+				51F3F5412BFB790C000EA9B9 /* AppDelegate.swift */,
+				51F3F5432BFB790C000EA9B9 /* SceneDelegate.swift */,
+				51F3F5472BFB790C000EA9B9 /* Main.storyboard */,
+				51F3F54D2BFB790F000EA9B9 /* Assets.xcassets */,
+				51F3F54F2BFB790F000EA9B9 /* LaunchScreen.storyboard */,
+				51F3F5522BFB790F000EA9B9 /* Info.plist */,
+				51F3F54A2BFB790C000EA9B9 /* SportinG.xcdatamodeld */,
+				51F3F57A2BFB7D1E000EA9B9 /* ViewController.swift */,
+			);
+			path = SportinG;
+			sourceTree = "<group>";
+		};
+		51F3F55A2BFB7910000EA9B9 /* SportinGTests */ = {
+			isa = PBXGroup;
+			children = (
+				51F3F55B2BFB7910000EA9B9 /* SportinGTests.swift */,
+			);
+			path = SportinGTests;
+			sourceTree = "<group>";
+		};
+		51F3F5642BFB7910000EA9B9 /* SportinGUITests */ = {
+			isa = PBXGroup;
+			children = (
+				51F3F5652BFB7910000EA9B9 /* SportinGUITests.swift */,
+				51F3F5672BFB7910000EA9B9 /* SportinGUITestsLaunchTests.swift */,
+			);
+			path = SportinGUITests;
+			sourceTree = "<group>";
+		};
+		51F3F5742BFB7A9A000EA9B9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		51F3F5752BFB7AA1000EA9B9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		51F3F5762BFB7AE6000EA9B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		51F3F5772BFB7C5E000EA9B9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				51F3F5792BFB7C87000EA9B9 /* Favorite */,
+				51F3F5782BFB7C80000EA9B9 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		51F3F5782BFB7C80000EA9B9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		51F3F5792BFB7C87000EA9B9 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		51F3F53D2BFB790C000EA9B9 /* SportinG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51F3F56B2BFB7910000EA9B9 /* Build configuration list for PBXNativeTarget "SportinG" */;
+			buildPhases = (
+				492F7D360B5E72E9D326D62E /* [CP] Check Pods Manifest.lock */,
+				51F3F53A2BFB790C000EA9B9 /* Sources */,
+				51F3F53B2BFB790C000EA9B9 /* Frameworks */,
+				51F3F53C2BFB790C000EA9B9 /* Resources */,
+				AC6D4F8FC215EABF9B510275 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SportinG;
+			productName = SportinG;
+			productReference = 51F3F53E2BFB790C000EA9B9 /* SportinG.app */;
+			productType = "com.apple.product-type.application";
+		};
+		51F3F5562BFB7910000EA9B9 /* SportinGTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51F3F56E2BFB7910000EA9B9 /* Build configuration list for PBXNativeTarget "SportinGTests" */;
+			buildPhases = (
+				FABFA26A20CF0DA338B5DFAD /* [CP] Check Pods Manifest.lock */,
+				51F3F5532BFB7910000EA9B9 /* Sources */,
+				51F3F5542BFB7910000EA9B9 /* Frameworks */,
+				51F3F5552BFB7910000EA9B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				51F3F5592BFB7910000EA9B9 /* PBXTargetDependency */,
+			);
+			name = SportinGTests;
+			productName = SportinGTests;
+			productReference = 51F3F5572BFB7910000EA9B9 /* SportinGTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		51F3F5602BFB7910000EA9B9 /* SportinGUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51F3F5712BFB7910000EA9B9 /* Build configuration list for PBXNativeTarget "SportinGUITests" */;
+			buildPhases = (
+				19A1F01EE5FDCAA9DA8F3C4D /* [CP] Check Pods Manifest.lock */,
+				51F3F55D2BFB7910000EA9B9 /* Sources */,
+				51F3F55E2BFB7910000EA9B9 /* Frameworks */,
+				51F3F55F2BFB7910000EA9B9 /* Resources */,
+				2CCC5DC5B3684FCA80665C7C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				51F3F5632BFB7910000EA9B9 /* PBXTargetDependency */,
+			);
+			name = SportinGUITests;
+			productName = SportinGUITests;
+			productReference = 51F3F5612BFB7910000EA9B9 /* SportinGUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		51F3F5362BFB790C000EA9B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					51F3F53D2BFB790C000EA9B9 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					51F3F5562BFB7910000EA9B9 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 51F3F53D2BFB790C000EA9B9;
+					};
+					51F3F5602BFB7910000EA9B9 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 51F3F53D2BFB790C000EA9B9;
+					};
+				};
+			};
+			buildConfigurationList = 51F3F5392BFB790C000EA9B9 /* Build configuration list for PBXProject "SportinG" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 51F3F5352BFB790C000EA9B9;
+			productRefGroup = 51F3F53F2BFB790C000EA9B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				51F3F53D2BFB790C000EA9B9 /* SportinG */,
+				51F3F5562BFB7910000EA9B9 /* SportinGTests */,
+				51F3F5602BFB7910000EA9B9 /* SportinGUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		51F3F53C2BFB790C000EA9B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51F3F5512BFB790F000EA9B9 /* LaunchScreen.storyboard in Resources */,
+				51F3F54E2BFB790F000EA9B9 /* Assets.xcassets in Resources */,
+				51F3F5492BFB790C000EA9B9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51F3F5552BFB7910000EA9B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51F3F55F2BFB7910000EA9B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19A1F01EE5FDCAA9DA8F3C4D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SportinG-SportinGUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2CCC5DC5B3684FCA80665C7C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SportinG-SportinGUITests/Pods-SportinG-SportinGUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SportinG-SportinGUITests/Pods-SportinG-SportinGUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SportinG-SportinGUITests/Pods-SportinG-SportinGUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		492F7D360B5E72E9D326D62E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SportinG-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC6D4F8FC215EABF9B510275 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SportinG/Pods-SportinG-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SportinG/Pods-SportinG-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SportinG/Pods-SportinG-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FABFA26A20CF0DA338B5DFAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SportinGTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		51F3F53A2BFB790C000EA9B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51F3F5422BFB790C000EA9B9 /* AppDelegate.swift in Sources */,
+				51F3F5442BFB790C000EA9B9 /* SceneDelegate.swift in Sources */,
+				51F3F57B2BFB7D1E000EA9B9 /* ViewController.swift in Sources */,
+				51F3F54C2BFB790C000EA9B9 /* SportinG.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51F3F5532BFB7910000EA9B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51F3F55C2BFB7910000EA9B9 /* SportinGTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51F3F55D2BFB7910000EA9B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51F3F5682BFB7910000EA9B9 /* SportinGUITestsLaunchTests.swift in Sources */,
+				51F3F5662BFB7910000EA9B9 /* SportinGUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		51F3F5592BFB7910000EA9B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51F3F53D2BFB790C000EA9B9 /* SportinG */;
+			targetProxy = 51F3F5582BFB7910000EA9B9 /* PBXContainerItemProxy */;
+		};
+		51F3F5632BFB7910000EA9B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51F3F53D2BFB790C000EA9B9 /* SportinG */;
+			targetProxy = 51F3F5622BFB7910000EA9B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		51F3F5472BFB790C000EA9B9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51F3F5482BFB790C000EA9B9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		51F3F54F2BFB790F000EA9B9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51F3F5502BFB790F000EA9B9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		51F3F5692BFB7910000EA9B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		51F3F56A2BFB7910000EA9B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		51F3F56C2BFB7910000EA9B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 430E87C34D720D50D2A9228F /* Pods-SportinG.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SportinG/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = swift.SportinG;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		51F3F56D2BFB7910000EA9B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9876E035D472461911BA6AAD /* Pods-SportinG.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SportinG/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = swift.SportinG;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		51F3F56F2BFB7910000EA9B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23DF2B1EF68DCD4465067401 /* Pods-SportinGTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = swift.SportinGTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SportinG.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SportinG";
+			};
+			name = Debug;
+		};
+		51F3F5702BFB7910000EA9B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7235FCC445E73B62F5745255 /* Pods-SportinGTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = swift.SportinGTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SportinG.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SportinG";
+			};
+			name = Release;
+		};
+		51F3F5722BFB7910000EA9B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 222623357EBD0B53DE792960 /* Pods-SportinG-SportinGUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = swift.SportinGUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SportinG;
+			};
+			name = Debug;
+		};
+		51F3F5732BFB7910000EA9B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22DE16C8626F4F0FC5346A7C /* Pods-SportinG-SportinGUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = swift.SportinGUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SportinG;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		51F3F5392BFB790C000EA9B9 /* Build configuration list for PBXProject "SportinG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51F3F5692BFB7910000EA9B9 /* Debug */,
+				51F3F56A2BFB7910000EA9B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51F3F56B2BFB7910000EA9B9 /* Build configuration list for PBXNativeTarget "SportinG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51F3F56C2BFB7910000EA9B9 /* Debug */,
+				51F3F56D2BFB7910000EA9B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51F3F56E2BFB7910000EA9B9 /* Build configuration list for PBXNativeTarget "SportinGTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51F3F56F2BFB7910000EA9B9 /* Debug */,
+				51F3F5702BFB7910000EA9B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51F3F5712BFB7910000EA9B9 /* Build configuration list for PBXNativeTarget "SportinGUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51F3F5722BFB7910000EA9B9 /* Debug */,
+				51F3F5732BFB7910000EA9B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		51F3F54A2BFB790C000EA9B9 /* SportinG.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				51F3F54B2BFB790C000EA9B9 /* SportinG.xcdatamodel */,
+			);
+			currentVersion = 51F3F54B2BFB790C000EA9B9 /* SportinG.xcdatamodel */;
+			path = SportinG.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 51F3F5362BFB790C000EA9B9 /* Project object */;
+}
