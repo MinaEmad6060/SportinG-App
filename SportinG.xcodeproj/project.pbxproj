@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40BA07D62BFBB2EC009BB9C2 /* Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40BA07D52BFBB2EC009BB9C2 /* Details.storyboard */; };
+		40BA07D82BFBB405009BB9C2 /* LeagueDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BA07D72BFBB405009BB9C2 /* LeagueDetailsViewController.swift */; };
 		51F3F5422BFB790C000EA9B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5412BFB790C000EA9B9 /* AppDelegate.swift */; };
 		51F3F5442BFB790C000EA9B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5432BFB790C000EA9B9 /* SceneDelegate.swift */; };
 		51F3F5492BFB790C000EA9B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51F3F5472BFB790C000EA9B9 /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 		222623357EBD0B53DE792960 /* Pods-SportinG-SportinGUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinG-SportinGUITests.debug.xcconfig"; path = "Target Support Files/Pods-SportinG-SportinGUITests/Pods-SportinG-SportinGUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		22DE16C8626F4F0FC5346A7C /* Pods-SportinG-SportinGUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinG-SportinGUITests.release.xcconfig"; path = "Target Support Files/Pods-SportinG-SportinGUITests/Pods-SportinG-SportinGUITests.release.xcconfig"; sourceTree = "<group>"; };
 		23DF2B1EF68DCD4465067401 /* Pods-SportinGTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinGTests.debug.xcconfig"; path = "Target Support Files/Pods-SportinGTests/Pods-SportinGTests.debug.xcconfig"; sourceTree = "<group>"; };
+		40BA07D52BFBB2EC009BB9C2 /* Details.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Details.storyboard; sourceTree = SOURCE_ROOT; };
+		40BA07D72BFBB405009BB9C2 /* LeagueDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewController.swift; sourceTree = "<group>"; };
 		430E87C34D720D50D2A9228F /* Pods-SportinG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportinG.debug.xcconfig"; path = "Target Support Files/Pods-SportinG/Pods-SportinG.debug.xcconfig"; sourceTree = "<group>"; };
 		51F3F53E2BFB790C000EA9B9 /* SportinG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportinG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51F3F5412BFB790C000EA9B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				51F3F5522BFB790F000EA9B9 /* Info.plist */,
 				51F3F54A2BFB790C000EA9B9 /* SportinG.xcdatamodeld */,
 				51F3F57A2BFB7D1E000EA9B9 /* ViewController.swift */,
+				40BA07D72BFBB405009BB9C2 /* LeagueDetailsViewController.swift */,
 			);
 			path = SportinG;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 		51F3F5762BFB7AE6000EA9B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				40BA07D52BFBB2EC009BB9C2 /* Details.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51F3F5512BFB790F000EA9B9 /* LaunchScreen.storyboard in Resources */,
+				40BA07D62BFBB2EC009BB9C2 /* Details.storyboard in Resources */,
 				51F3F54E2BFB790F000EA9B9 /* Assets.xcassets in Resources */,
 				51F3F5492BFB790C000EA9B9 /* Main.storyboard in Resources */,
 			);
@@ -461,6 +468,7 @@
 				51F3F5442BFB790C000EA9B9 /* SceneDelegate.swift in Sources */,
 				51F3F57B2BFB7D1E000EA9B9 /* ViewController.swift in Sources */,
 				51F3F54C2BFB790C000EA9B9 /* SportinG.xcdatamodeld in Sources */,
+				40BA07D82BFBB405009BB9C2 /* LeagueDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
