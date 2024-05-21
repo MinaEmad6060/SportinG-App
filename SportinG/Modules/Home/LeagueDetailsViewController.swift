@@ -255,12 +255,12 @@ class LeagueDetailsViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            if let detailsController = storyboard.instantiateViewController(withIdentifier: "HomeDetailVC") as? DetailsViewController{
-//                detailsController.modalPresentationStyle = .fullScreen
-//                detailsController.new = newsList[indexPath.row]
-//                present(detailsController, animated: true, completion: nil)
-//            }
+            let storyboard = UIStoryboard(name: "Details", bundle: nil)
+            if let teamDetailsController = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController{
+                teamDetailsController.modalPresentationStyle = .fullScreen
+//                teamDetailsController.new = newsList[indexPath.row]
+                present(teamDetailsController, animated: true, completion: nil)
+            }
             print("Siiiiiiiiiiiiiii")
         }
     }
