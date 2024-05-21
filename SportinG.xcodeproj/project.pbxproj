@@ -18,6 +18,9 @@
 		51BCFEAC2BFBC7540038BA84 /* SplashScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BCFEAB2BFBC7540038BA84 /* SplashScreenController.swift */; };
 		51BCFEAE2BFBCF630038BA84 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BCFEAD2BFBCF630038BA84 /* HomeViewController.swift */; };
 		51BCFEB02BFBCFAE0038BA84 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BCFEAF2BFBCFAE0038BA84 /* FavoriteViewController.swift */; };
+		51F024D02BFD13D60015A3A2 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F024CE2BFD13D60015A3A2 /* CustomCell.swift */; };
+		51F024D12BFD13D60015A3A2 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51F024CF2BFD13D60015A3A2 /* CustomCell.xib */; };
+		51F024D52BFD3AEF0015A3A2 /* todoimg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 51F024D42BFD3AEF0015A3A2 /* todoimg.jpeg */; };
 		51F3F5422BFB790C000EA9B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5412BFB790C000EA9B9 /* AppDelegate.swift */; };
 		51F3F5442BFB790C000EA9B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5432BFB790C000EA9B9 /* SceneDelegate.swift */; };
 		51F3F5492BFB790C000EA9B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51F3F5472BFB790C000EA9B9 /* Main.storyboard */; };
@@ -66,6 +69,9 @@
 		51BCFEAB2BFBC7540038BA84 /* SplashScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenController.swift; sourceTree = "<group>"; };
 		51BCFEAD2BFBCF630038BA84 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		51BCFEAF2BFBCFAE0038BA84 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		51F024CE2BFD13D60015A3A2 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		51F024CF2BFD13D60015A3A2 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		51F024D42BFD3AEF0015A3A2 /* todoimg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = todoimg.jpeg; sourceTree = "<group>"; };
 		51F3F53E2BFB790C000EA9B9 /* SportinG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportinG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51F3F5412BFB790C000EA9B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51F3F5432BFB790C000EA9B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 		51F3F5402BFB790C000EA9B9 /* SportinG */ = {
 			isa = PBXGroup;
 			children = (
+				51F024D42BFD3AEF0015A3A2 /* todoimg.jpeg */,
 				51F3F5772BFB7C5E000EA9B9 /* Modules */,
 				51F3F5762BFB7AE6000EA9B9 /* View */,
 				51F3F5752BFB7AA1000EA9B9 /* Services */,
@@ -183,10 +190,11 @@
 				51F3F5522BFB790F000EA9B9 /* Info.plist */,
 				51F3F54A2BFB790C000EA9B9 /* SportinG.xcdatamodeld */,
 				51F3F57A2BFB7D1E000EA9B9 /* ViewController.swift */,
-
 				51BCFEAB2BFBC7540038BA84 /* SplashScreenController.swift */,
 				51BCFEAD2BFBCF630038BA84 /* HomeViewController.swift */,
 				51BCFEAF2BFBCFAE0038BA84 /* FavoriteViewController.swift */,
+				51F024CE2BFD13D60015A3A2 /* CustomCell.swift */,
+				51F024CF2BFD13D60015A3A2 /* CustomCell.xib */,
 			);
 			path = SportinG;
 			sourceTree = "<group>";
@@ -249,7 +257,6 @@
 				409F942C2BFC3D7E005E097E /* LeagueDetailsCollectionViewCell.swift */,
 				409F94302BFC3E83005E097E /* LogoCollectionViewCell.swift */,
 				409F94372BFC4B50005E097E /* TeamDetailsViewController.swift */,
-
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -370,6 +377,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51F024D12BFD13D60015A3A2 /* CustomCell.xib in Resources */,
+				51F024D52BFD3AEF0015A3A2 /* todoimg.jpeg in Resources */,
 				409F942F2BFC3D7E005E097E /* LeagueDetailsCollectionViewCell.xib in Resources */,
 				51F3F5512BFB790F000EA9B9 /* LaunchScreen.storyboard in Resources */,
 				40BA07D62BFBB2EC009BB9C2 /* Details.storyboard in Resources */,
@@ -514,6 +523,7 @@
 				51BCFEB02BFBCFAE0038BA84 /* FavoriteViewController.swift in Sources */,
 				40BA07D82BFBB405009BB9C2 /* LeagueDetailsViewController.swift in Sources */,
 				409F94382BFC4B50005E097E /* TeamDetailsViewController.swift in Sources */,
+				51F024D02BFD13D60015A3A2 /* CustomCell.swift in Sources */,
 				409F94282BFC3C1F005E097E /* FetchDataFromApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
