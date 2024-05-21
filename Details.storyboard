@@ -162,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="1632.824427480916" y="-27.464788732394368"/>
         </scene>
-        <!--Team DetailsVC-->
+        <!--Team Details View Controller-->
         <scene sceneID="DoN-NI-jZe">
             <objects>
-                <viewController storyboardIdentifier="TeamDetailsVC" id="m4S-nz-BHP" customClass="TeamDetailsVC" customModule="SportinG" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamDetailsViewController" id="m4S-nz-BHP" customClass="TeamDetailsViewController" customModule="SportinG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A5D-gd-q4F">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

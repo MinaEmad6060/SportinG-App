@@ -257,7 +257,7 @@ class LeagueDetailsViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             let storyboard = UIStoryboard(name: "Details", bundle: nil)
-            if let teamDetailsController = storyboard.instantiateViewController(withIdentifier: "TeamDetailsVC") as? TeamDetailsVC{
+            if let teamDetailsController = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController{
                 teamDetailsController.modalPresentationStyle = .fullScreen
                 //                teamDetailsController.new = newsList[indexPath.row]
                 present(teamDetailsController, animated: true, completion: nil)
@@ -297,27 +297,4 @@ class LeagueDetailsViewController: UICollectionViewController {
      }
      */
     
-    class TeamDetailsViewController: UIViewController {
-        
-        @IBAction func btnBack(_ sender: Any) {
-            self.dismiss(animated: true)
-        }
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            // Do any additional setup after loading the view.
-        }
-        
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
-        
-    }
 }
