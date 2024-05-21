@@ -47,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="65" y="-27"/>
         </scene>
-        <!--League DetailsVC-->
+        <!--League Details View Controller-->
         <scene sceneID="JkK-07-oWO">
             <objects>
-                <collectionViewController id="686-DJ-CAc" customClass="LeagueDetailsVC" customModule="SportinG" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="686-DJ-CAc" customClass="LeagueDetailsViewController" customModule="SportinG" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="bLH-St-UCX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,7 +62,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="Cell" id="NkB-1Q-rYb" customClass="CollectionViewCell" customModule="SportAppDemo" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="Cell" id="NkB-1Q-rYb" customClass="CollectionViewCell" customModule="SportinG" customModuleProvider="target">
                                 <rect key="frame" x="35.666666666666664" y="0.0" width="322" height="263"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Crs-l1-MtK">
@@ -85,7 +85,7 @@
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="322" height="263"/>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="thirdCell" id="bvY-7q-ueY" customClass="CollectionViewCell" customModule="SportAppDemo" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="thirdCell" id="bvY-7q-ueY" customClass="CollectionViewCell" customModule="SportinG" customModuleProvider="target">
                                 <rect key="frame" x="35" y="273" width="323" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4S6-hQ-MBR">
@@ -128,7 +128,7 @@
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="323" height="176"/>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="secondCell" id="rGr-FU-ey0" customClass="LogoCollectionViewCell" customModule="SportAppDemo" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="secondCell" id="rGr-FU-ey0" customClass="LogoCollectionViewCell" customModule="SportinG" customModuleProvider="target">
                                 <rect key="frame" x="52.666666666666664" y="459" width="288" height="257"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Jpa-EY-8Zk">

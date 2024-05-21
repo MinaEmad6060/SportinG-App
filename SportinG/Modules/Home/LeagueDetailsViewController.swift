@@ -8,10 +8,7 @@
 import UIKit
 import Kingfisher
 
-
-//private let reuseIdentifier = "Cell"
-
-class LeagueDetailsVC: UICollectionViewController {
+class LeagueDetailsViewController: UICollectionViewController {
     
     
     var fetchDataFromAPi : FetchDataFromApi?
@@ -254,6 +251,18 @@ class LeagueDetailsVC: UICollectionViewController {
         // Configure the cell
         
         
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            if let detailsController = storyboard.instantiateViewController(withIdentifier: "HomeDetailVC") as? DetailsViewController{
+//                detailsController.modalPresentationStyle = .fullScreen
+//                detailsController.new = newsList[indexPath.row]
+//                present(detailsController, animated: true, completion: nil)
+//            }
+            print("Siiiiiiiiiiiiiii")
+        }
     }
     
     // MARK: UICollectionViewDelegate
