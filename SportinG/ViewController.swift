@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBAction func btnBack(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
