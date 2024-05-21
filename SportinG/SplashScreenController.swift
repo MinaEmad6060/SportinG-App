@@ -13,7 +13,7 @@ class SplashScreenController: UIViewController {
         super.viewDidLoad()
 
         //Wait 2 seconds and go to splash screen
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1){
             self.performSegue(withIdentifier: "OpenSplash", sender: nil)
         }
     }
