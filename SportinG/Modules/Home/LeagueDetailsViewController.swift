@@ -257,7 +257,7 @@ class LeagueDetailsViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             let storyboard = UIStoryboard(name: "Details", bundle: nil)
-            if let teamDetailsController = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController{
+            if let teamDetailsController = storyboard.instantiateViewController(withIdentifier: "TeamDetailsVC") as? TeamDetailsVC{
                 teamDetailsController.modalPresentationStyle = .fullScreen
                 //                teamDetailsController.new = newsList[indexPath.row]
                 present(teamDetailsController, animated: true, completion: nil)

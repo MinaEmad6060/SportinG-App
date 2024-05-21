@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamDetailsViewController: UIViewController {
+class TeamDetailsVC: UIViewController {
 
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
