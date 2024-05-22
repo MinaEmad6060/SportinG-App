@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let sportsImgs = ["todoimg.jpeg", "todoimg.jpeg", "todoimg.jpeg", "todoimg.jpeg"]
+    let sportsImgs = ["footballlogo", "basketballlogo", "cricketlogo", "tennislogo"]
     let sportsNames = ["Football", "BasketBall", "Circket", "Tennis"]
     
     var sportsCollectionView: UICollectionView!
@@ -51,6 +51,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = sportsCollectionView.dequeueReusableCell(withReuseIdentifier: "sportCell", for: indexPath) as! CustomSportCell
         
         cell.sportImgView.image = UIImage(named: sportsImgs[indexPath.row])
+        cell.nameLabel.text = sportsNames[indexPath.row]
         
         return cell
     }
@@ -59,29 +60,72 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return CGSize(width: view.frame.width / 2 - 20 , height: 270)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("sport \(indexPath.row + 1) is tapped")
+        
+        let selectedSport = indexPath.row
+        var url: String = ""
+            
+        switch selectedSport {
+            case 0:
+                url = Utils.Urls.FootBall_All_Leagues.rawValue
+            case 1:
+                url = Utils.Urls.BasketBall_All_Leagues.rawValue
+            case 2:
+                url = Utils.Urls.Cricket_All_Leagues.rawValue
+            case 3:
+                url = Utils.Urls.Tennis_All_Leagues.rawValue
+            default:
+                break
+        }
+        
+        guard let sportLeaguesController = storyboard?.instantiateViewController(withIdentifier: "SportLeagues") as? SportLeaguesController else {
+                return
+        }
+        
+        sportLeaguesController.url = url
+            
+        navigationController?.pushViewController(sportLeaguesController, animated: true)
     }
+    
+    
     
 }
 
 class CustomSportCell: UICollectionViewCell{
     
     let sportImgView = UIImageView()
+    let nameLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(sportImgView)
+        addSubview(nameLabel)
         
         sportImgView.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        sportImgView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        sportImgView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        sportImgView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        sportImgView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        
+        NSLayoutConstraint.activate([
+            sportImgView.topAnchor.constraint(equalTo: topAnchor),
+            sportImgView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            sportImgView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            sportImgView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 50),
+                   
+            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+               
         sportImgView.layer.cornerRadius = 20
         sportImgView.layer.masksToBounds = true
+               
+        nameLabel.textAlignment = .center
+        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        
+        contentView.backgroundColor = UIColor.clear
+        contentView.layer.cornerRadius = 20
+        contentView.layer.masksToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
