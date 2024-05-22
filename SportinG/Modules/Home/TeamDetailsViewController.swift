@@ -7,16 +7,39 @@
 
 import UIKit
 
-class TeamDetailsViewController: UIViewController {
+class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    
+    
+    @IBOutlet weak var teamDetailsTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        teamDetailsTableView.delegate = self
+        teamDetailsTableView.dataSource = self
+        
+        self.teamDetailsTableView!.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "Favorite")
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "Favorite", for: indexPath) as! CustomCell
+    
+        cell.labelCustomCell.text = "This is Team Details"
+    
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     
 
     /*

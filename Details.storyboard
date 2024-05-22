@@ -234,6 +234,9 @@
                         <viewLayoutGuide key="safeArea" id="som-AH-vq1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="teamDetailsTableView" destination="dWq-TH-ozm" id="fvx-0z-I1N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GfB-3q-pyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
