@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class LeagueDetVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     @IBAction func btnBack(_ sender: Any) {
@@ -32,10 +32,6 @@ class LeagueDetVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let nibCustomCell = UINib(nibName: "LeagueDetailsCollectionViewCell", bundle: nil)
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "upcomingCell")
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "latestCell")
-//        self.leagueDetailsCollectionView.register(LogoCollectionViewCell.self, forCellWithReuseIdentifier: "latestCell")
-
-        
-        
         
         
         // 1
@@ -55,7 +51,7 @@ class LeagueDetVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchDataFromAPi?.getFootBallData (url: Utils.Urls.FootBall_Upcoming_Events.rawValue,handler: {[weak self] upcomingMatches in
+        fetchDataFromAPi?.getFootBallData (url: fetchDataFromAPi?.formatURL(sport: "football", met: "Fixtures", teamId: "", leagueId: "", rangeOfUpcomingEvents: "&from=2024-06-20&to=2024-06-20") ?? "",handler: {[weak self] upcomingMatches in
             DispatchQueue.main.async {
                 self?.upcomingResults = upcomingMatches.result
                 print("ColView: \(upcomingMatches.result.count)")
@@ -63,7 +59,7 @@ class LeagueDetVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self?.leagueDetailsCollectionView.reloadData()
             }
         })
-        fetchDataFromAPi?.getFootBallData (url: Utils.Urls.FootBall_LiveScore_Events.rawValue,handler: {[weak self] liveScoreMatches in
+        fetchDataFromAPi?.getFootBallData (url: fetchDataFromAPi?.formatURL(sport: "football", met: "Livescore", teamId: "", leagueId: "", rangeOfUpcomingEvents: "") ?? "",handler: {[weak self] liveScoreMatches in
             DispatchQueue.main.async {
                 self?.liveScoreResults = liveScoreMatches.result
                 print("ColView: \(liveScoreMatches.result.count)")
@@ -72,7 +68,7 @@ class LeagueDetVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         })
         //Utils.Urls.FootBall_League_Teams.rawValue
-        fetchDataFromAPi?.getFootBallData (url: fetchDataFromAPi?.formatURL(sport: "football", met: "Teams", teamId: "", leagueId: "152") ?? "",handler: {[weak self] teamsMatches in
+        fetchDataFromAPi?.getFootBallData (url: fetchDataFromAPi?.formatURL(sport: "football", met: "Teams", teamId: "", leagueId: "152", rangeOfUpcomingEvents: "") ?? "",handler: {[weak self] teamsMatches in
             DispatchQueue.main.async {
                 self?.teamsResults = teamsMatches.result
                 print("ColView: \(teamsMatches.result.count)")

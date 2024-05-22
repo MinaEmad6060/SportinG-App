@@ -16,7 +16,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         favoriteTableView.delegate = self
         favoriteTableView.dataSource = self
         
-        self.favoriteTableView!.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "Favorite")
+        self.favoriteTableView!.register(UINib(nibName: "SportCustomCell", bundle: nil), forCellReuseIdentifier: "SportCustomCell")
         
     }
     
@@ -29,7 +29,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = favoriteTableView.dequeueReusableCell(withIdentifier: "Favorite", for: indexPath) as! CustomCell
+        let cell = favoriteTableView.dequeueReusableCell(withIdentifier: "SportCustomCell", for: indexPath) as! SportCustomCell
     
         cell.labelCustomCell.text = "This is Favorite"
     

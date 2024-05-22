@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomCell: UITableViewCell {
+class SportCustomCell: UITableViewCell {
 
     @IBOutlet weak var imgCustomCell: UIImageView!
     

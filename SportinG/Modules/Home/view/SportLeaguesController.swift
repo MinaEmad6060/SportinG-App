@@ -23,7 +23,7 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
         sportLeaguesTable.delegate = self
         sportLeaguesTable.dataSource = self
         
-        self.sportLeaguesTable!.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "sportLeagues")
+        self.sportLeaguesTable!.register(UINib(nibName: "SportCustomCell", bundle: nil), forCellReuseIdentifier: "SportCustomCell")
         
         fetchSportLeaguesData()
     }
@@ -47,7 +47,7 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = sportLeaguesTable.dequeueReusableCell(withIdentifier: "sportLeagues", for: indexPath) as! CustomCell
+        let cell = sportLeaguesTable.dequeueReusableCell(withIdentifier: "SportCustomCell", for: indexPath) as! SportCustomCell
             
         let league = sportLeagues[indexPath.row]
         cell.labelCustomCell.text = league.league_name

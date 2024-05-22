@@ -21,7 +21,7 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         teamDetailsTableView.delegate = self
         teamDetailsTableView.dataSource = self
         
-        self.teamDetailsTableView!.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "Favorite")
+        self.teamDetailsTableView!.register(UINib(nibName: "SportCustomCell", bundle: nil), forCellReuseIdentifier: "SportCustomCell")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,7 +29,7 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "Favorite", for: indexPath) as! CustomCell
+        let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "SportCustomCell", for: indexPath) as! SportCustomCell
     
         cell.labelCustomCell.text = "This is Team Details"
     

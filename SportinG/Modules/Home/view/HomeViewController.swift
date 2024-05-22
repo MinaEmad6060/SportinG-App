@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    var fetchDataFromAPi: FetchDataFromApi?
     let sportsImgs = ["footballlogo", "basketballlogo", "cricketlogo", "tennislogo"]
     let sportsNames = ["Football", "BasketBall", "Circket", "Tennis"]
     
@@ -16,6 +17,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchDataFromAPi = FetchDataFromApi()
         
         let layout = UICollectionViewFlowLayout()
         sportsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -69,13 +72,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             
         switch selectedSport {
             case 0:
-                url = Utils.Urls.FootBall_All_Leagues.rawValue
+            url = fetchDataFromAPi?.formatURL(sport: "football", met: "Leagues", teamId: "", leagueId: "",rangeOfUpcomingEvents: "") ?? ""
             case 1:
-                url = Utils.Urls.BasketBall_All_Leagues.rawValue
+                url = fetchDataFromAPi?.formatURL(sport: "basketball", met: "Leagues", teamId: "", leagueId: "",rangeOfUpcomingEvents: "") ?? ""
             case 2:
-                url = Utils.Urls.Cricket_All_Leagues.rawValue
+                url = fetchDataFromAPi?.formatURL(sport: "cricket", met: "Leagues", teamId: "", leagueId: "",rangeOfUpcomingEvents: "") ?? ""
             case 3:
-                url = Utils.Urls.Tennis_All_Leagues.rawValue
+                url = fetchDataFromAPi?.formatURL(sport: "tennis", met: "Leagues", teamId: "", leagueId: "",rangeOfUpcomingEvents: "") ?? ""
             default:
                 break
         }
