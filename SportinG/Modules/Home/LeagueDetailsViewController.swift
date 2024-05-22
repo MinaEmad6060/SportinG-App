@@ -13,7 +13,6 @@ class LeagueDetailsViewController: UICollectionViewController {
     
     
     var fetchDataFromAPi : FetchDataFromApi?
-    
     var upcomingResults: [Result] = []
     var liveScoreResults: [Result] = []
     var teamsResults: [Result] = []
@@ -42,15 +41,10 @@ class LeagueDetailsViewController: UICollectionViewController {
         }
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
-    
-    let upcomingUrl = "https://apiv2.allsportsapi.com/football?met=Fixtures&from=2024-06-20&to=2024-06-20&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644"
-    
-    let liveScoreUrl = "https://apiv2.allsportsapi.com/football/?met=Livescore&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644"
-    
-    let teamsUrl = "https://apiv2.allsportsapi.com/football/?met=Teams&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644&leagueId=152"
+
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchDataFromAPi?.getFootBallData (url: self.upcomingUrl,handler: {[weak self] upcomingMatches in
+        fetchDataFromAPi?.getFootBallData (url: Utils.Urls.FootBall_Upcoming_Events.rawValue,handler: {[weak self] upcomingMatches in
             DispatchQueue.main.async {
                 self?.upcomingResults = upcomingMatches.result
                 print("ColView: \(upcomingMatches.result.count)")
@@ -58,7 +52,7 @@ class LeagueDetailsViewController: UICollectionViewController {
                 self?.collectionView.reloadData()
             }
         })
-        fetchDataFromAPi?.getFootBallData (url: self.liveScoreUrl,handler: {[weak self] liveScoreMatches in
+        fetchDataFromAPi?.getFootBallData (url: Utils.Urls.FootBall_LiveScore_Events.rawValue,handler: {[weak self] liveScoreMatches in
             DispatchQueue.main.async {
                 self?.liveScoreResults = liveScoreMatches.result
                 print("ColView: \(liveScoreMatches.result.count)")
@@ -66,7 +60,7 @@ class LeagueDetailsViewController: UICollectionViewController {
                 self?.collectionView.reloadData()
             }
         })
-        fetchDataFromAPi?.getFootBallData (url: self.teamsUrl,handler: {[weak self] teamsMatches in
+        fetchDataFromAPi?.getFootBallData (url: Utils.Urls.FootBall_League_Teams.rawValue,handler: {[weak self] teamsMatches in
             DispatchQueue.main.async {
                 self?.teamsResults = teamsMatches.result
                 print("ColView: \(teamsMatches.result.count)")
