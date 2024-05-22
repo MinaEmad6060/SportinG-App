@@ -31,8 +31,8 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJU-0F-07f">
-                        <rect key="frame" x="152.33333333333334" y="131.66666666666666" width="96.333333333333343" height="20.333333333333343"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="122" y="131.66666666666666" width="157" height="15.666666666666657"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -41,7 +41,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="52" id="6BH-Bs-sVX"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -62,7 +62,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="yuE-Ul-Keu"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -70,6 +70,8 @@
             </view>
             <viewLayoutGuide key="safeArea" id="V4d-1q-f62"/>
             <constraints>
+                <constraint firstItem="BJU-0F-07f" firstAttribute="leading" secondItem="aFk-7V-eDZ" secondAttribute="leading" id="1Og-oB-ybr"/>
+                <constraint firstItem="BJU-0F-07f" firstAttribute="trailing" secondItem="aFk-7V-eDZ" secondAttribute="trailing" id="1vt-Mz-ykT"/>
                 <constraint firstItem="TH0-xK-k5T" firstAttribute="top" secondItem="e3R-ZS-Odg" secondAttribute="top" id="Alf-JT-YM6"/>
                 <constraint firstItem="esR-CU-BhZ" firstAttribute="leading" secondItem="e3R-ZS-Odg" secondAttribute="trailing" constant="21" id="Cr7-7C-bST"/>
                 <constraint firstItem="TH0-xK-k5T" firstAttribute="leading" secondItem="aFk-7V-eDZ" secondAttribute="trailing" constant="15" id="Gil-VG-L2i"/>
@@ -85,12 +87,10 @@
                 <constraint firstItem="aFk-7V-eDZ" firstAttribute="centerX" secondItem="BJU-0F-07f" secondAttribute="centerX" id="fpo-x8-qWo"/>
                 <constraint firstAttribute="trailing" secondItem="TH0-xK-k5T" secondAttribute="trailing" constant="20" id="j1b-vk-bgo"/>
                 <constraint firstAttribute="trailing" secondItem="3d9-nT-RBz" secondAttribute="trailing" constant="16" id="ngV-Cg-NsQ"/>
-                <constraint firstItem="3d9-nT-RBz" firstAttribute="leading" secondItem="BJU-0F-07f" secondAttribute="trailing" constant="41.333333333333343" id="ow9-3r-GYd"/>
                 <constraint firstItem="TH0-xK-k5T" firstAttribute="top" secondItem="lNp-kg-iap" secondAttribute="top" constant="20" id="qGh-m9-6O9"/>
                 <constraint firstItem="3d9-nT-RBz" firstAttribute="centerX" secondItem="TH0-xK-k5T" secondAttribute="centerX" id="rxj-7B-SGy"/>
                 <constraint firstItem="F1q-CF-wZX" firstAttribute="centerX" secondItem="e3R-ZS-Odg" secondAttribute="centerX" id="vDq-CP-g98"/>
                 <constraint firstItem="e3R-ZS-Odg" firstAttribute="leading" secondItem="lNp-kg-iap" secondAttribute="leading" constant="20" id="vb5-jS-Qao"/>
-                <constraint firstItem="BJU-0F-07f" firstAttribute="leading" secondItem="F1q-CF-wZX" secondAttribute="trailing" constant="41.333333333333343" id="z0H-u8-7Yj"/>
             </constraints>
             <size key="customSize" width="401" height="192"/>
             <connections>
