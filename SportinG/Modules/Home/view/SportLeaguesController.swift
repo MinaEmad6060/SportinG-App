@@ -12,6 +12,10 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
 
     @IBOutlet weak var sportLeaguesTable: UITableView!
     
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
+    
     var url: String = ""
     var sportLeagues: [Result] = []
     

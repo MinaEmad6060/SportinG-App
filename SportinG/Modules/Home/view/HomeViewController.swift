@@ -60,7 +60,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 2 - 20 , height: 270)
+        return CGSize(width: view.frame.width / 2 - 20 , height: 230)
     }
     
     
@@ -88,8 +88,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
         
         sportLeaguesController.url = url
-            
-        navigationController?.pushViewController(sportLeaguesController, animated: true)
+
+        sportLeaguesController.modalPresentationStyle = .fullScreen
+        present(sportLeaguesController, animated: true )
+        
     }
     
     
@@ -113,20 +115,20 @@ class CustomSportCell: UICollectionViewCell{
             sportImgView.topAnchor.constraint(equalTo: topAnchor),
             sportImgView.leadingAnchor.constraint(equalTo: leadingAnchor),
             sportImgView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            sportImgView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 50),
+            sportImgView.heightAnchor.constraint(equalToConstant: 150),
+            sportImgView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 60),
                    
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-               
-        sportImgView.layer.cornerRadius = 20
-        sportImgView.layer.masksToBounds = true
-               
+                              
         nameLabel.textAlignment = .center
         nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         
-        contentView.backgroundColor = UIColor.clear
+        //backgroundColor = UIColor.lightGray
+        
+        //contentView.backgroundColor = UIColor.clear
         contentView.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
     }

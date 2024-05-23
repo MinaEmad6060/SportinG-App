@@ -10,6 +10,7 @@ import Kingfisher
 
 class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    var dataManager = CoreDataManager()
     
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
@@ -272,7 +273,17 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBAction func btnFav(_ sender: Any) {
         
+        let leagueKey = "YourLeagueKey"
+        let leagueName = "YourLeagueName"
+        let leagueLogo = "YourLeagueLogoURL"
+        let sportName = "SportName"
+                
+        if !dataManager.leagueExistsInCoreData(application: UIApplication.shared, leagueKey: leagueKey) {
+                dataManager.saveToCoreData(application: UIApplication.shared, leagueKey: leagueKey, leagueName: leagueName, leagueLogo: leagueLogo, sportName: sportName)
+            print("League added to favorites!")
+        } else {
+            print("League already exists in favorites!")
+        }
     }
     
-
 }
