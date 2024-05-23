@@ -13,10 +13,8 @@ class FetchDataFromApi{
     
     var baseUrl = "https://apiv2.allsportsapi.com/"
     var apiKey = "22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644"
-//    static var sport = ""
     
     func formatURL(sport: String, met: String, teamId: String="", leagueId: String="") -> String{
-//        FetchDataFromApi.sport = sport
         return baseUrl+sport+"/?met="+met+"&APIkey="+apiKey+"&leagueId="+leagueId+"&teamId="+teamId
     }
     
