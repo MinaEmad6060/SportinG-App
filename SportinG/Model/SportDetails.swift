@@ -15,6 +15,7 @@ struct SportDetails: Decodable{
 
 struct Result: Decodable{
     var league_name: String?
+    var league_key: Int?
     var league_logo: String?
     var event_date: String?
     var event_time: String?

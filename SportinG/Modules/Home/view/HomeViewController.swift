@@ -68,18 +68,25 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         print("sport \(indexPath.row + 1) is tapped")
         
         let selectedSport = indexPath.row
-        var url: String = ""
+        var url = ""
+        var sport = ""
             
         switch selectedSport {
             case 0:
-            url = fetchDataFromAPi?.formatURL(sport: "football", met: "Leagues", teamId: "", leagueId: "",rangeOfUpcomingEvents: "") ?? ""
+                url = fetchDataFromAPi?.formatURL(sport: "football", met: "Leagues") ?? ""
+                sport = "football"
             case 1:
-                url = fetchDataFromAPi?.formatURL(sport: "basketball", met: "Leagues", teamId: "", leagueId: "",rangeOfUpcomingEvents: "") ?? ""
+                url = fetchDataFromAPi?.formatURL(sport: "basketball", met: "Leagues") ?? ""
+                sport = "basketball"
             case 2:
-                url = fetchDataFromAPi?.formatURL(sport: "cricket", met: "Leagues", teamId: "", leagueId: "",rangeOfUpcomingEvents: "") ?? ""
+                url = fetchDataFromAPi?.formatURL(sport: "cricket", met: "Leagues") ?? ""
+                sport = "cricket"
             case 3:
-                url = fetchDataFromAPi?.formatURL(sport: "tennis", met: "Leagues", teamId: "", leagueId: "",rangeOfUpcomingEvents: "") ?? ""
+                url = fetchDataFromAPi?.formatURL(sport: "tennis", met: "Leagues") ?? ""
+                sport = "tennis"
             default:
+                url = ""
+                sport = ""
                 break
         }
         
@@ -88,6 +95,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
         
         sportLeaguesController.url = url
+        sportLeaguesController.sport = sport
             
         navigationController?.pushViewController(sportLeaguesController, animated: true)
     }

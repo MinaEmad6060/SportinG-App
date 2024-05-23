@@ -11,6 +11,9 @@ import Kingfisher
 class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
+    @IBOutlet weak var favBtn: UIBarButtonItem!
+    
+    
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -19,6 +22,9 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var leagueDetailsCollectionView: UICollectionView!
     
     var fetchDataFromAPi : FetchDataFromApi?
+    var eventsUrl = ""
+    var teamsUrl = ""
+    var sport = ""
     var upcomingResults: [Result] = []
     var liveScoreResults: [Result] = []
     var teamsResults: [Result] = []
@@ -34,7 +40,6 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "latestCell")
         
         
-        // 1
         let layout = UICollectionViewCompositionalLayout{sectionindex,enviroment in
             if sectionindex==0 {
                 return self.drawTheTopSection()
@@ -51,7 +56,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
 
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchDataFromAPi?.getFootBallData (url: fetchDataFromAPi?.formatURL(sport: "football", met: "Fixtures", teamId: "", leagueId: "", rangeOfUpcomingEvents: "&from=2024-06-20&to=2024-06-20") ?? "",handler: {[weak self] upcomingMatches in
+        print("Upcoming URL : \(eventsUrl)")
+        fetchDataFromAPi?.getSportData (url: eventsUrl+"&from=2024-05-29&to=2025-05-29", handler: {[weak self] upcomingMatches in
             DispatchQueue.main.async {
                 self?.upcomingResults = upcomingMatches.result
                 print("ColView: \(upcomingMatches.result.count)")
@@ -59,7 +65,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 self?.leagueDetailsCollectionView.reloadData()
             }
         })
-        fetchDataFromAPi?.getFootBallData (url: fetchDataFromAPi?.formatURL(sport: "football", met: "Livescore", teamId: "", leagueId: "", rangeOfUpcomingEvents: "") ?? "",handler: {[weak self] liveScoreMatches in
+        fetchDataFromAPi?.getSportData (url: eventsUrl+"&from=2023-05-29&to=2024-05-29", handler: {[weak self] liveScoreMatches in
             DispatchQueue.main.async {
                 self?.liveScoreResults = liveScoreMatches.result
                 print("ColView: \(liveScoreMatches.result.count)")
@@ -67,8 +73,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 self?.leagueDetailsCollectionView.reloadData()
             }
         })
-        //Utils.Urls.FootBall_League_Teams.rawValue
-        fetchDataFromAPi?.getFootBallData (url: fetchDataFromAPi?.formatURL(sport: "football", met: "Teams", teamId: "", leagueId: "152", rangeOfUpcomingEvents: "") ?? "",handler: {[weak self] teamsMatches in
+
+        fetchDataFromAPi?.getSportData (url: teamsUrl, handler: {[weak self] teamsMatches in
             DispatchQueue.main.async {
                 self?.teamsResults = teamsMatches.result
                 print("ColView: \(teamsMatches.result.count)")
@@ -80,16 +86,16 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     
     func drawTheTopSection ()-> NSCollectionLayoutSection{
-        //6 item size
+
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        //5 create item
+
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        // 4 group size
+
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(230))
-        //3 create group
+
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16 )
-        //2 create section
+
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
@@ -127,16 +133,15 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     
     func drawTheTopSection3 ()-> NSCollectionLayoutSection{
-        //6 item size
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        //5 create item
+
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        // 4 group size
+
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .absolute(100))
-        //3 create group
+
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 8 )
-        //2 create section
+
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
@@ -152,19 +157,6 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         return section
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    // MARK: UICollectionViewDataSource
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 3
@@ -172,18 +164,25 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         if section==0 {
-            return upcomingResults.count
+            if 0 < upcomingResults.count && upcomingResults.count < 50 {
+                return upcomingResults.count
+            }else {
+                return 10
+            }
         }else if section==1{
-            if liveScoreResults.count != 0{
+            if 0 < liveScoreResults.count && liveScoreResults.count < 50 {
                 return liveScoreResults.count
-            }else{
-                return 5
+            }else {
+                return 10
             }
             
         }else{
-            return teamsResults.count
+            if teamsResults.count != 0{
+                return teamsResults.count
+            }else {
+                return 10
+            }
         }
         
     }
@@ -259,11 +258,12 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         if indexPath.section == 2 {
             let storyboard = UIStoryboard(name: "Details", bundle: nil)
             if let teamDetailsController = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController{
-                teamDetailsController.modalPresentationStyle = .fullScreen
-                //                teamDetailsController.new = newsList[indexPath.row]
+                
+                teamDetailsController.teamDetailsUrl = fetchDataFromAPi?.formatURL(sport: sport, met: "Teams", teamId: "\(teamsResults[indexPath.row].team_key ?? 585)") ?? ""
+                
+                teamDetailsController.sport = sport
                 present(teamDetailsController, animated: true, completion: nil)
             }
-            print("Siiiiiiiiiiiiiii")
         }
     }
     
