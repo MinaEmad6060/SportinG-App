@@ -12,16 +12,21 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
 
     @IBOutlet weak var sportLeaguesTable: UITableView!
     
+
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
-    var url: String = ""
+
+    var url = ""
+    var sport = ""
+
     var sportLeagues: [Result] = []
+    var fetchDataFromAPi : FetchDataFromApi?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchDataFromAPi = FetchDataFromApi()
         print("Leagues Screen Loaded")
 
         sportLeaguesTable.delegate = self
@@ -33,7 +38,7 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
     }
     
     func fetchSportLeaguesData() {
-        FetchDataFromApi().getFootBallData(url: url) { sportDetails in
+        fetchDataFromAPi?.getSportData(url: url) { sportDetails in
             self.sportLeagues = sportDetails.result
             DispatchQueue.main.async {
                 self.sportLeaguesTable.reloadData()
@@ -71,6 +76,24 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Details", bundle: nil)
+        if let leagueDetailsViewController = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as? LeagueDetailsViewController{
+            leagueDetailsViewController.eventsUrl =
+            fetchDataFromAPi?.formatURL(sport: sport,
+                                        met: "Fixtures",
+                                        leagueId: "\(sportLeagues[indexPath.row].league_key ?? 4)") ?? ""
+            print("League key = \(sportLeagues[indexPath.row].league_key ?? 4)")
+            leagueDetailsViewController.teamsUrl =
+            fetchDataFromAPi?.formatURL(sport: sport,
+                                        met: "Teams",
+                                        leagueId: "\(sportLeagues[indexPath.row].league_key ?? 4)") ?? ""
+            leagueDetailsViewController.sport = sport
+            present(leagueDetailsViewController, animated: true, completion: nil)
+        }
     }
 
 
