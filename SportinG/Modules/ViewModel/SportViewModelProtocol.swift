@@ -12,5 +12,6 @@ protocol SportViewModelProtocol{
     var sportDetails: SportDetails? { get set }
     func setSportUrl(selectedSport: Int) -> (String, String)
     func getSportLeaguesFromNetworkService(url: String)
+    func getFormatedUrl(sport: String, met:String, leaguesKies: [Int], index: Int) -> String
     func getDataFromNetworkService()
 }

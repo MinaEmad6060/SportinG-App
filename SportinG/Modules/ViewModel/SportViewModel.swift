@@ -38,7 +38,6 @@ class SportViewModel: SportViewModelProtocol{
             case 3:
             url = fetchDataFromApi.formatURL(sport: "tennis", met: "Leagues")
                 sport = "tennis"
-            print("tennis URL : \(url)")
             default:
                 url = ""
                 sport = ""
@@ -50,12 +49,14 @@ class SportViewModel: SportViewModelProtocol{
     func getSportLeaguesFromNetworkService(url: String) {
         fetchDataFromApi.getSportData(url: url) { sportDetails in
             self.sportDetails = sportDetails
-//            DispatchQueue.main.async {
-//                self.sportLeaguesTable.reloadData()
-//            }
         }
     }
     
+    func getFormatedUrl(sport: String, met:String, leaguesKies: [Int], index: Int) -> String{
+        return fetchDataFromApi.formatURL(sport: sport, met: met,leagueId:"\(leaguesKies[index])")
+    }
+    
+
     
     
     func getDataFromNetworkService() {
