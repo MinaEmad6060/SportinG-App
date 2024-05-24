@@ -10,7 +10,7 @@ import Reachability
 
 class HomeViewController: UIViewController {
     
-    var fetchDataFromAPi: FetchDataFromApi?
+    var sportViewModel: SportViewModelProtocol?
     let sportsImgs = ["footballlogo", "basketballlogo", "cricketlogo", "tennislogo"]
     let sportsNames = ["Football", "BasketBall", "Circket", "Tennis"]
     
@@ -21,8 +21,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchDataFromAPi = FetchDataFromApi()
-        
+        sportViewModel = SportViewModel()
         let layout = UICollectionViewFlowLayout()
         sportsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.addSubview(sportsCollectionView)
@@ -91,41 +90,16 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }else{
             
             print("sport \(indexPath.row + 1) is tapped")
-            
-            let selectedSport = indexPath.row
-            var url = ""
-            var sport = ""
-            
-            switch selectedSport {
-            case 0:
-                url = fetchDataFromAPi?.formatURL(sport: "football", met: "Leagues") ?? ""
-                sport = "football"
-            case 1:
-                url = fetchDataFromAPi?.formatURL(sport: "basketball", met: "Leagues") ?? ""
-                sport = "basketball"
-            case 2:
-                url = fetchDataFromAPi?.formatURL(sport: "cricket", met: "Leagues") ?? ""
-                sport = "cricket"
-            case 3:
-                url = fetchDataFromAPi?.formatURL(sport: "tennis", met: "Leagues") ?? ""
-                sport = "tennis"
-            default:
-                url = ""
-                sport = ""
-                break
-            }
-            
+           
             guard let sportLeaguesController = storyboard?.instantiateViewController(withIdentifier: "SportLeagues") as? SportLeaguesController else {
                 return
             }
             
-            sportLeaguesController.url = url
-            
+            sportLeaguesController.url = sportViewModel?.setSportUrl(selectedSport: indexPath.row).0 ?? ""
+            sportLeaguesController.sport = sportViewModel?.setSportUrl(selectedSport: indexPath.row).1 ?? ""
             sportLeaguesController.modalPresentationStyle = .fullScreen
             present(sportLeaguesController, animated: true )
-            
-            
-            sportLeaguesController.sport = sport
+
         }
             
     }

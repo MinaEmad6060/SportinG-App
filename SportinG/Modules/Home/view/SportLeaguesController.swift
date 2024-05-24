@@ -21,12 +21,17 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
     var url = ""
     var sport = ""
 
-    var sportLeagues: [Result] = []
-    var fetchDataFromAPi : FetchDataFromApi?
+//    var sportLeagues: [Result] = []
+    
+    var leagueName: [String] = [String]()
+    var leagueImage: [String]?
+    var numberOfLeagues = 0
+    var sportViewModel: SportViewModelProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchDataFromAPi = FetchDataFromApi()
+        leagueImage = [String]()
+        sportViewModel = SportViewModel()
         print("Leagues Screen Loaded")
 
         sportLeaguesTable.delegate = self
@@ -34,12 +39,16 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
         
         self.sportLeaguesTable!.register(UINib(nibName: "SportCustomCell", bundle: nil), forCellReuseIdentifier: "SportCustomCell")
         
-        fetchSportLeaguesData()
-    }
-    
-    func fetchSportLeaguesData() {
-        fetchDataFromAPi?.getSportData(url: url) { sportDetails in
-            self.sportLeagues = sportDetails.result
+        sportViewModel?.getSportLeaguesFromNetworkService(url: url)
+        sportViewModel?.bindResultToViewController = {
+            self.numberOfLeagues = self.sportViewModel?.sportDetails?.result.count ?? 10
+            
+            for i in 0..<self.numberOfLeagues {
+                self.leagueName.append(self.sportViewModel?.sportDetails?.result[i].league_name ?? "")
+                self.leagueImage?.append(self.sportViewModel?.sportDetails?.result[i].league_logo ?? "")
+            }
+            
+            
             DispatchQueue.main.async {
                 self.sportLeaguesTable.reloadData()
             }
@@ -48,7 +57,7 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sportLeagues.count
+        return numberOfLeagues
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,14 +67,17 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sportLeaguesTable.dequeueReusableCell(withIdentifier: "SportCustomCell", for: indexPath) as! SportCustomCell
             
-        let league = sportLeagues[indexPath.row]
-        cell.labelCustomCell.text = league.league_name
+        cell.labelCustomCell.text = leagueName[indexPath.row]
         
-        if let logoURLString = league.league_logo, let logoURL = URL(string: logoURLString) {
-                cell.imgCustomCell.kf.setImage(with: logoURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
-            } else {
-                cell.imgCustomCell.image = UIImage(named: "placeholderlogo.jpeg")
-            }
+//        if let logoURL = URL(string: leagueImage[indexPath.row]) {
+//            cell.imgCustomCell.kf.setImage(with: logoURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
+//        }
+        
+        if let logoURLString = leagueImage?[indexPath.row], let logoURL = URL(string: logoURLString) {
+            cell.imgCustomCell.kf.setImage(with: logoURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
+        } else {
+            cell.imgCustomCell.image = UIImage(named: "placeholderlogo.jpeg")
+        }
                
         // Make the image circular
         cell.imgCustomCell.layer.cornerRadius = 55
@@ -79,22 +91,22 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
     }
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Details", bundle: nil)
-        if let leagueDetailsViewController = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as? LeagueDetailsViewController{
-            leagueDetailsViewController.eventsUrl =
-            fetchDataFromAPi?.formatURL(sport: sport,
-                                        met: "Fixtures",
-                                        leagueId: "\(sportLeagues[indexPath.row].league_key ?? 4)") ?? ""
-            print("League key = \(sportLeagues[indexPath.row].league_key ?? 4)")
-            leagueDetailsViewController.teamsUrl =
-            fetchDataFromAPi?.formatURL(sport: sport,
-                                        met: "Teams",
-                                        leagueId: "\(sportLeagues[indexPath.row].league_key ?? 4)") ?? ""
-            leagueDetailsViewController.sport = sport
-            present(leagueDetailsViewController, animated: true, completion: nil)
-        }
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let storyboard = UIStoryboard(name: "Details", bundle: nil)
+//        if let leagueDetailsViewController = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as? LeagueDetailsViewController{
+//            leagueDetailsViewController.eventsUrl =
+//            fetchDataFromApi?.formatURL(sport: sport,
+//                                        met: "Fixtures",
+//                                        leagueId: "\(sportLeagues[indexPath.row].league_key ?? 4)") ?? ""
+//            print("League key = \(sportLeagues[indexPath.row].league_key ?? 4)")
+//            leagueDetailsViewController.teamsUrl =
+//            fetchDataFromApi?.formatURL(sport: sport,
+//                                        met: "Teams",
+//                                        leagueId: "\(sportLeagues[indexPath.row].league_key ?? 4)") ?? ""
+//            leagueDetailsViewController.sport = sport
+//            present(leagueDetailsViewController, animated: true, completion: nil)
+//        }
+//    }
 
 
 }

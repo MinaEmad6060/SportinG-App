@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+protocol SportViewModelProtocol{
+    var bindResultToViewController: (() -> ())? { get set }
+    var sportDetails: SportDetails? { get set }
+    func setSportUrl(selectedSport: Int) -> (String, String)
+    func getSportLeaguesFromNetworkService(url: String)
+    func getDataFromNetworkService()
+}
