@@ -15,12 +15,15 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     
     var favoriteLeagues: [NSManagedObject] = []
     let dataManager = CoreDataManager()
+    var fetchDataFromAPi : FetchDataFromApi?
     
     let reachability = try! Reachability()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        fetchDataFromAPi = FetchDataFromApi()
+        
         favoriteTableView.delegate = self
         favoriteTableView.dataSource = self
         
@@ -45,11 +48,19 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = favoriteTableView.dequeueReusableCell(withIdentifier: "SportCustomCell", for: indexPath) as! SportCustomCell
     
-        //cell.labelCustomCell.text = "This is Favorite"
         let league = favoriteLeagues[indexPath.row]
         if let leagueName = league.value(forKey: "leagueName") as? String {
                 cell.labelCustomCell.text = leagueName
             }
+        if let logoURLString = league.value(forKey: "leagueLogo"), let logoURL = URL(string: logoURLString as! String) {
+                cell.imgCustomCell.kf.setImage(with: logoURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
+            } else {
+                cell.imgCustomCell.image = UIImage(named: "placeholderlogo.jpeg")
+            }
+               
+        // Make the image circular
+        cell.imgCustomCell.layer.cornerRadius = 55
+        cell.imgCustomCell.clipsToBounds = true
     
         return cell
     }
@@ -59,7 +70,26 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        startMonitoringReachability()
+        if reachability.connection != .unavailable {
+            // Reachability is available
+            let selectedLeague = favoriteLeagues[indexPath.row]
+            let leagueName = selectedLeague.value(forKey: "leagueName") as! String
+            let leagueKey = selectedLeague.value(forKey: "leagueKey") as! String
+            print("Selected League: \(leagueName), League Key: \(leagueKey)")
+
+            // Proceed with navigation
+            let storyboard = UIStoryboard(name: "Details", bundle: nil)
+            if let leagueDetailsViewController = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as? LeagueDetailsViewController {
+                let sportName = selectedLeague.value(forKey: "sportName") as! String
+                leagueDetailsViewController.eventsUrl = fetchDataFromAPi?.formatURL(sport: sportName, met: "Fixtures", leagueId: leagueKey) ?? ""
+                leagueDetailsViewController.teamsUrl = fetchDataFromAPi?.formatURL(sport: sportName, met: "Teams", leagueId: leagueKey) ?? ""
+                leagueDetailsViewController.sport = sportName
+                self.present(leagueDetailsViewController, animated: true, completion: nil)
+            }
+        } else {
+            // No internet connection
+            showNoInternetAlert()
+        }
     }
     
     func retrieveDataFromCoreData() {
@@ -75,7 +105,6 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
                 self?.showNoInternetAlert()
             }
         }
-        
         do {
             try reachability.startNotifier()
         } catch {
@@ -89,7 +118,16 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
-
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let league = favoriteLeagues[indexPath.row]
+            let leagueKey = league.value(forKey: "leagueKey") as? String ?? ""
+            dataManager.deleteFromCoreData(application: UIApplication.shared, leagueKey: leagueKey)
+            favoriteLeagues.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
     deinit {
         reachability.stopNotifier()

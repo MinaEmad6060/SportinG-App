@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Reachability
 
 class HomeViewController: UIViewController {
     
     var fetchDataFromAPi: FetchDataFromApi?
     let sportsImgs = ["footballlogo", "basketballlogo", "cricketlogo", "tennislogo"]
     let sportsNames = ["Football", "BasketBall", "Circket", "Tennis"]
+    
+    let reachability = try! Reachability()
     
     var sportsCollectionView: UICollectionView!
 
@@ -37,11 +40,28 @@ class HomeViewController: UIViewController {
         
         sportsCollectionView.register(CustomSportCell.self, forCellWithReuseIdentifier: "sportCell")
 
-
-        
     }
     
-
+    func startMonitoringReachability() {
+        reachability.whenUnreachable = { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.showNoInternetAlert()
+            }
+        }
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start reachability notifier")
+        }
+    }
+    
+    func showNoInternetAlert() {
+        let alertController = UIAlertController(title: "No Internet Connection", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -65,13 +85,18 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("sport \(indexPath.row + 1) is tapped")
         
-        let selectedSport = indexPath.row
-        var url = ""
-        var sport = ""
+        if reachability.connection == .unavailable {
+               showNoInternetAlert()
+        }else{
             
-        switch selectedSport {
+            print("sport \(indexPath.row + 1) is tapped")
+            
+            let selectedSport = indexPath.row
+            var url = ""
+            var sport = ""
+            
+            switch selectedSport {
             case 0:
                 url = fetchDataFromAPi?.formatURL(sport: "football", met: "Leagues") ?? ""
                 sport = "football"
@@ -88,19 +113,20 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 url = ""
                 sport = ""
                 break
-        }
-        
-        guard let sportLeaguesController = storyboard?.instantiateViewController(withIdentifier: "SportLeagues") as? SportLeaguesController else {
+            }
+            
+            guard let sportLeaguesController = storyboard?.instantiateViewController(withIdentifier: "SportLeagues") as? SportLeaguesController else {
                 return
+            }
+            
+            sportLeaguesController.url = url
+            
+            sportLeaguesController.modalPresentationStyle = .fullScreen
+            present(sportLeaguesController, animated: true )
+            
+            
+            sportLeaguesController.sport = sport
         }
-        
-        sportLeaguesController.url = url
-
-        sportLeaguesController.modalPresentationStyle = .fullScreen
-        present(sportLeaguesController, animated: true )
-        
-
-        sportLeaguesController.sport = sport
             
     }
     

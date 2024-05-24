@@ -12,6 +12,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     var dataManager = CoreDataManager()
     
+    var isFavorited = false
+    
     @IBOutlet weak var favBtn: UIBarButtonItem!
     
     
@@ -53,6 +55,9 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             
         }
         leagueDetailsCollectionView.setCollectionViewLayout(layout, animated: true)
+        
+        updateFavButtonImage()
+        
     }
 
     
@@ -83,6 +88,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 self?.leagueDetailsCollectionView.reloadData()
             }
         })
+        
+        updateFavButtonImage()
     }
     
     
@@ -109,6 +116,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 item.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
         }
+        updateFavButtonImage()
         return section
     }
     
@@ -128,7 +136,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15
                                                         , bottom: 10, trailing: 15)
-        
+        updateFavButtonImage()
         return section
     }
     
@@ -155,6 +163,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 item.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
         }
+        updateFavButtonImage()
         return section
     }
     
@@ -272,17 +281,46 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     
     @IBAction func btnFav(_ sender: Any) {
+                
+        guard let selectedLeague = upcomingResults.first else {
+                return
+        }
         
-        let leagueKey = "YourLeagueKey"
-        let leagueName = "YourLeagueName"
-        let leagueLogo = "YourLeagueLogoURL"
-        let sportName = "SportName"
+        let leagueKey: String
+            if let key = selectedLeague.league_key {
+                leagueKey = "\(key)"
+            } else {
+                leagueKey = ""
+            }
+        
+        let leagueName = selectedLeague.league_name ?? ""
+        let leagueLogo = selectedLeague.league_logo ?? ""
+        let sportName = sport
                 
         if !dataManager.leagueExistsInCoreData(application: UIApplication.shared, leagueKey: leagueKey) {
-                dataManager.saveToCoreData(application: UIApplication.shared, leagueKey: leagueKey, leagueName: leagueName, leagueLogo: leagueLogo, sportName: sportName)
+            dataManager.saveToCoreData(application: UIApplication.shared, leagueKey: leagueKey, leagueName: leagueName, leagueLogo: leagueLogo, sportName: sportName)
             print("League added to favorites!")
+            isFavorited = true
+            favBtn.image = UIImage(systemName: "heart.fill")
         } else {
-            print("League already exists in favorites!")
+            dataManager.deleteFromCoreData(application: UIApplication.shared, leagueKey: leagueKey)
+            print("League removed from favorites!")
+            isFavorited = false
+            favBtn.image = UIImage(systemName: "heart")
+        }
+    }
+    
+    func updateFavButtonImage() {
+        if let selectedLeague = upcomingResults.first, let leagueKey = selectedLeague.league_key {
+            if dataManager.leagueExistsInCoreData(application: UIApplication.shared, leagueKey: "\(leagueKey)") {
+                isFavorited = true
+                favBtn.image = UIImage(systemName: "heart.fill")
+                print("isssssssss favorite")
+            } else {
+                isFavorited = false
+                favBtn.image = UIImage(systemName: "heart")
+                print("issssssss not favorite")
+            }
         }
     }
     
