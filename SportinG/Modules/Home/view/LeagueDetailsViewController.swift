@@ -8,6 +8,21 @@
 import UIKit
 import Kingfisher
 
+
+
+struct Events{
+    var home_team_logo: String?
+    var away_team_logo: String?
+    var event_home_team: String?
+    var event_away_team: String?
+    var event_date: String?
+    var event_time: String?
+    var league_name: String?
+    var league_logo: String?
+    var event_final_result: String?
+    var league_key: Int?
+}
+
 class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var dataManager = CoreDataManager()
@@ -31,8 +46,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     var eventsUrl = ""
     var teamsUrl = ""
     var sport = ""
-    var upcomingEvents: [UpcomingEvents] = []
-    var latestEvents: [UpcomingEvents] = []
+    var upcomingEvents: [Events] = []
+    var latestEvents: [Events] = []
     var teamsLogos: [String] = []
     var teamsKies: [Int] = []
     
@@ -45,7 +60,6 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         let nibCustomCell = UINib(nibName: "LeagueDetailsCollectionViewCell", bundle: nil)
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "upcomingCell")
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "latestCell")
-        
         
         let layout = UICollectionViewCompositionalLayout{sectionindex,enviroment in
             if sectionindex==0 {
@@ -70,7 +84,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         sportViewModel?.bindUpcomingToViewController = {
             self.numberOfUpcoming = self.sportViewModel?.leaguesUpcomingDetails?.result.count ?? 10
             for i in 0..<self.numberOfUpcoming {
-                var upcomingEvent = UpcomingEvents()
+                var upcomingEvent = Events()
                 upcomingEvent.away_team_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].away_team_logo
                 upcomingEvent.event_away_team = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_away_team
                 upcomingEvent.event_date = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_date
@@ -95,7 +109,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             self.numberOfLatest = self.sportViewModel?.leagueLatestDetails?.result.count ?? 0
             print("numberOfLatest : \(self.numberOfLatest)")
             for i in 0..<self.numberOfLatest {
-                var latestEvent = UpcomingEvents()
+                var latestEvent = Events()
                 latestEvent.away_team_logo = self.sportViewModel?.leagueLatestDetails?.result[i].away_team_logo
                 latestEvent.event_away_team = self.sportViewModel?.leagueLatestDetails?.result[i].event_away_team
                 latestEvent.event_date = self.sportViewModel?.leagueLatestDetails?.result[i].event_date
@@ -116,7 +130,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             }
         }
         
-        sportViewModel?.getTeamsDetailsFromNetworkService(url: teamsUrl)
+        sportViewModel?.getTeamsLogosFromNetworkService(url: teamsUrl)
         print("Latest eventsUrl  :: \(teamsUrl)")
         sportViewModel?.bindLogosToViewController = {
             self.numberOfTeams = self.sportViewModel?.leagueTeamsLogos?.result.count ?? 0
@@ -372,16 +386,3 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
 }
 
-
-struct UpcomingEvents{
-    var home_team_logo: String?
-    var away_team_logo: String?
-    var event_home_team: String?
-    var event_away_team: String?
-    var event_date: String?
-    var event_time: String?
-    var league_name: String?
-    var league_logo: String?
-    var event_final_result: String?
-    var league_key: Int?
-}

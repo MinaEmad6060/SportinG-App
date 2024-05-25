@@ -49,7 +49,6 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
             
             
             DispatchQueue.main.async {
-//                print("leaguesKies ::: \(self.leaguesKies.count)")
                 self.sportLeaguesTable.reloadData()
             }
         }

@@ -9,12 +9,11 @@ import Foundation
 
 
 class SportViewModel: SportViewModelProtocol{
-    
-    
-    
+   
     var bindUpcomingToViewController : (()->())? = {}
     var bindLatestToViewController : (()->())? = {}
     var bindLogosToViewController : (()->())? = {}
+    var bindDetailsToViewController : (()->())? = {}
     var fetchDataFromApi = FetchDataFromApi()
     var leaguesUpcomingDetails: SportDetails? {
         didSet{
@@ -31,6 +30,12 @@ class SportViewModel: SportViewModelProtocol{
     var leagueTeamsLogos: SportDetails? {
         didSet{
                 (bindLogosToViewController ?? {})()
+        }
+    }
+    
+    var leagueTeamsDetails: SportDetails? {
+        didSet{
+                (bindDetailsToViewController ?? {})()
         }
     }
   
@@ -89,13 +94,17 @@ class SportViewModel: SportViewModelProtocol{
         }
     }
     
-    func getTeamsDetailsFromNetworkService(url: String) {
+    func getTeamsLogosFromNetworkService(url: String) {
         fetchDataFromApi.getSportData (url: url){ sportDetails in
             self.leagueTeamsLogos = sportDetails
         }
     }
     
     
-    
+    func getTeamsDetailsFromNetworkService(url: String) {
+        fetchDataFromApi.getSportData (url: url){ sportDetails in
+            self.leagueTeamsDetails = sportDetails
+        }
+    }
     
 }
