@@ -38,18 +38,18 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
         self.sportLeaguesTable!.register(UINib(nibName: "SportCustomCell", bundle: nil), forCellReuseIdentifier: "SportCustomCell")
         
         sportViewModel?.getSportLeaguesFromNetworkService(url: url)
-        sportViewModel?.bindResultToViewController = {
-            self.numberOfLeagues = self.sportViewModel?.sportDetails?.result.count ?? 10
+        sportViewModel?.bindUpcomingToViewController = {
+            self.numberOfLeagues = self.sportViewModel?.leaguesUpcomingDetails?.result.count ?? 10
             
             for i in 0..<self.numberOfLeagues {
-                self.leaguesNames.append(self.sportViewModel?.sportDetails?.result[i].league_name ?? "")
-                self.leaguesKies.append(self.sportViewModel?.sportDetails?.result[i].league_key ?? 585)
-                self.leaguesImages?.append(self.sportViewModel?.sportDetails?.result[i].league_logo ?? "")
+                self.leaguesNames.append(self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_name ?? "")
+                self.leaguesKies.append(self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_key ?? 585)
+                self.leaguesImages?.append(self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_logo ?? "")
             }
             
             
             DispatchQueue.main.async {
-                print("leaguesKies ::: \(self.leaguesKies.count)")
+//                print("leaguesKies ::: \(self.leaguesKies.count)")
                 self.sportLeaguesTable.reloadData()
             }
         }
@@ -91,9 +91,9 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
         let storyboard = UIStoryboard(name: "Details", bundle: nil)
         if let leagueDetailsViewController = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as? LeagueDetailsViewController{
             leagueDetailsViewController.eventsUrl =
-            sportViewModel?.getFormatedUrl(sport: sport, met: "Fixtures", leaguesKies: leaguesKies, index: indexPath.row) ?? ""
+            sportViewModel?.getLeaguesFormatedUrl(sport: sport, met: "Fixtures", leaguesKies: leaguesKies, index: indexPath.row) ?? ""
             
-            leagueDetailsViewController.teamsUrl = sportViewModel?.getFormatedUrl(sport: sport, met: "Teams", leaguesKies: leaguesKies, index: indexPath.row) ?? ""
+            leagueDetailsViewController.teamsUrl = sportViewModel?.getLeaguesFormatedUrl(sport: sport, met: "Teams", leaguesKies: leaguesKies, index: indexPath.row) ?? ""
 
             leagueDetailsViewController.sport = sport
             present(leagueDetailsViewController, animated: true, completion: nil)

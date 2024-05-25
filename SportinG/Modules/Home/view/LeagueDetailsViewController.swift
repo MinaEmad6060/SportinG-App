@@ -24,20 +24,24 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var leagueDetailsCollectionView: UICollectionView!
     
-    var fetchDataFromAPi : FetchDataFromApi?
+    var sportViewModel: SportViewModelProtocol?
+    var numberOfUpcoming = 0
+    var numberOfLatest = 0
+    var numberOfTeams = 0
     var eventsUrl = ""
     var teamsUrl = ""
     var sport = ""
-    var upcomingResults: [Result] = []
-    var liveScoreResults: [Result] = []
-    var teamsResults: [Result] = []
+    var upcomingEvents: [UpcomingEvents] = []
+    var latestEvents: [UpcomingEvents] = []
+    var teamsLogos: [String] = []
+    var teamsKies: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sportViewModel = SportViewModel()
         leagueDetailsCollectionView.delegate = self
         leagueDetailsCollectionView.dataSource = self
         
-        fetchDataFromAPi = FetchDataFromApi()
         let nibCustomCell = UINib(nibName: "LeagueDetailsCollectionViewCell", bundle: nil)
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "upcomingCell")
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "latestCell")
@@ -62,32 +66,74 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
 
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Upcoming URL : \(eventsUrl)")
-        fetchDataFromAPi?.getSportData (url: eventsUrl+"&from=2024-05-29&to=2025-05-29", handler: {[weak self] upcomingMatches in
-            DispatchQueue.main.async {
-                self?.upcomingResults = upcomingMatches.result
-                print("ColView: \(upcomingMatches.result.count)")
-                print("Home Team: \(upcomingMatches.result[0].event_home_team ?? "none")")
-                self?.leagueDetailsCollectionView.reloadData()
+        sportViewModel?.getLeagueDetailsFromNetworkService(url: eventsUrl+"&from=2024-05-29&to=2025-05-29")
+        sportViewModel?.bindUpcomingToViewController = {
+            self.numberOfUpcoming = self.sportViewModel?.leaguesUpcomingDetails?.result.count ?? 10
+            for i in 0..<self.numberOfUpcoming {
+                var upcomingEvent = UpcomingEvents()
+                upcomingEvent.away_team_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].away_team_logo
+                upcomingEvent.event_away_team = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_away_team
+                upcomingEvent.event_date = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_date
+                upcomingEvent.event_home_team = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_home_team
+                upcomingEvent.event_time = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_time
+                upcomingEvent.home_team_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].home_team_logo
+                upcomingEvent.league_key = self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_key
+                upcomingEvent.league_name = self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_name
+                upcomingEvent.league_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_logo
+                self.upcomingEvents.append(upcomingEvent)
             }
-        })
-        fetchDataFromAPi?.getSportData (url: eventsUrl+"&from=2023-05-29&to=2024-05-29", handler: {[weak self] liveScoreMatches in
+            
+            
             DispatchQueue.main.async {
-                self?.liveScoreResults = liveScoreMatches.result
-                print("ColView: \(liveScoreMatches.result.count)")
-                print("Home Team: \(liveScoreMatches.result[0].event_home_team ?? "none")")
-                self?.leagueDetailsCollectionView.reloadData()
+                self.leagueDetailsCollectionView.reloadData()
             }
-        })
-
-        fetchDataFromAPi?.getSportData (url: teamsUrl, handler: {[weak self] teamsMatches in
+        }
+        
+        sportViewModel?.getLatestDetailsFromNetworkService(url: eventsUrl+"&from=2023-05-29&to=2024-05-29")
+        print("Latest eventsUrl  :: \(eventsUrl+"&from=2023-05-29&to=2024-05-29")")
+        sportViewModel?.bindLatestToViewController = {
+            self.numberOfLatest = self.sportViewModel?.leagueLatestDetails?.result.count ?? 0
+            print("numberOfLatest : \(self.numberOfLatest)")
+            for i in 0..<self.numberOfLatest {
+                var latestEvent = UpcomingEvents()
+                latestEvent.away_team_logo = self.sportViewModel?.leagueLatestDetails?.result[i].away_team_logo
+                latestEvent.event_away_team = self.sportViewModel?.leagueLatestDetails?.result[i].event_away_team
+                latestEvent.event_date = self.sportViewModel?.leagueLatestDetails?.result[i].event_date
+                latestEvent.event_home_team = self.sportViewModel?.leagueLatestDetails?.result[i].event_home_team
+                latestEvent.event_time = self.sportViewModel?.leagueLatestDetails?.result[i].event_time
+                latestEvent.home_team_logo = self.sportViewModel?.leagueLatestDetails?.result[i].home_team_logo
+                latestEvent.league_key = self.sportViewModel?.leagueLatestDetails?.result[i].league_key
+                latestEvent.league_name = self.sportViewModel?.leagueLatestDetails?.result[i].league_name
+                latestEvent.league_logo = self.sportViewModel?.leagueLatestDetails?.result[i].league_logo
+                latestEvent.event_final_result = self.sportViewModel?.leagueLatestDetails?.result[i].event_final_result
+                self.latestEvents.append(latestEvent)
+                
+            }
+            print("self.latestEvents : \(self.latestEvents.count)")
+            
             DispatchQueue.main.async {
-                self?.teamsResults = teamsMatches.result
-                print("ColView: \(teamsMatches.result.count)")
-                print("Home Team: \(teamsMatches.result[0].event_home_team ?? "none")")
-                self?.leagueDetailsCollectionView.reloadData()
+                self.leagueDetailsCollectionView.reloadData()
             }
-        })
+        }
+        
+        sportViewModel?.getTeamsDetailsFromNetworkService(url: teamsUrl)
+        print("Latest eventsUrl  :: \(teamsUrl)")
+        sportViewModel?.bindLogosToViewController = {
+            self.numberOfTeams = self.sportViewModel?.leagueTeamsLogos?.result.count ?? 0
+            print("numberOfLatest : \(self.numberOfLatest)")
+            for i in 0..<self.numberOfTeams {
+                var teamLogo = ""
+                var teamKey = -1
+                teamLogo = self.sportViewModel?.leagueTeamsLogos?.result[i].team_logo ?? ""
+                teamKey = self.sportViewModel?.leagueTeamsLogos?.result[i].team_key ?? -1
+                self.teamsLogos.append(teamLogo)
+                self.teamsKies.append(teamKey)
+            }
+            
+            DispatchQueue.main.async {
+                self.leagueDetailsCollectionView.reloadData()
+            }
+        }
         
         updateFavButtonImage()
     }
@@ -168,28 +214,27 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 3
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section==0 {
-            if 0 < upcomingResults.count && upcomingResults.count < 50 {
-                return upcomingResults.count
+            if 0 < upcomingEvents.count && upcomingEvents.count < 50 {
+                return upcomingEvents.count
             }else {
                 return 10
             }
         }else if section==1{
-            if 0 < liveScoreResults.count && liveScoreResults.count < 50 {
-                return liveScoreResults.count
+            if 0 < latestEvents.count && latestEvents.count < 50 {
+                return latestEvents.count
             }else {
                 return 10
             }
             
         }else{
-            if teamsResults.count != 0{
-                return teamsResults.count
+            if teamsLogos.count != 0{
+                return teamsLogos.count
             }else {
                 return 10
             }
@@ -202,11 +247,10 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         if indexPath.section==0 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue NewsCell") }
             
-            
-            if(upcomingResults.count != 0){
-                if let homeImageUrl = upcomingResults[indexPath.row].home_team_logo,
+            if(upcomingEvents.count != 0){
+                if let homeImageUrl = upcomingEvents[indexPath.row].home_team_logo,
                    let homeUrl = URL(string: homeImageUrl),
-                   let awayImageUrl = upcomingResults[indexPath.row].away_team_logo,
+                   let awayImageUrl = upcomingEvents[indexPath.row].away_team_logo,
                    let awayUrl = URL(string: awayImageUrl) {
                     cell.homeImage.kf.setImage(with: homeUrl)
                     cell.awayImage.kf.setImage(with: awayUrl)
@@ -214,10 +258,10 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                     cell.homeImage.image = UIImage(named: "man.png")
                     cell.awayImage.image = UIImage(named: "man.png")
                 }
-                cell.homeTeam.text = upcomingResults[indexPath.row].event_home_team
-                cell.awayTeam.text = upcomingResults[indexPath.row].event_away_team
-                cell.dateOfMatch.text = upcomingResults[indexPath.row].event_date
-                cell.timeOfMatch.text = upcomingResults[indexPath.row].event_time
+                cell.homeTeam.text = upcomingEvents[indexPath.row].event_home_team
+                cell.awayTeam.text = upcomingEvents[indexPath.row].event_away_team
+                cell.dateOfMatch.text = upcomingEvents[indexPath.row].event_date
+                cell.timeOfMatch.text = upcomingEvents[indexPath.row].event_time
             }
             
             return cell
@@ -225,10 +269,12 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue Cell") }
             
-            if(liveScoreResults.count != 0){
-                if let homeImageUrl = liveScoreResults[indexPath.row].home_team_logo,
+            print(" section1 latestEvents.count  ::  \(latestEvents.count)")
+            
+            if(latestEvents.count != 0){
+                if let homeImageUrl = latestEvents[indexPath.row].home_team_logo,
                    let homeUrl = URL(string: homeImageUrl),
-                   let awayImageUrl = liveScoreResults[indexPath.row].away_team_logo,
+                   let awayImageUrl = latestEvents[indexPath.row].away_team_logo,
                    let awayUrl = URL(string: awayImageUrl) {
                     cell.homeImage.kf.setImage(with: homeUrl)
                     cell.awayImage.kf.setImage(with: awayUrl)
@@ -236,11 +282,12 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                     cell.homeImage.image = UIImage(named: "man.png")
                     cell.awayImage.image = UIImage(named: "man.png")
                 }
-                cell.homeTeam.text = liveScoreResults[indexPath.row].event_home_team
-                cell.awayTeam.text = liveScoreResults[indexPath.row].event_away_team
-                cell.dateOfMatch.text = liveScoreResults[indexPath.row].event_date
-                cell.timeOfMatch.text = liveScoreResults[indexPath.row].event_time
-                cell.scoreOfLiveMatch.text = liveScoreResults[indexPath.row].event_final_result
+                cell.homeTeam.text = latestEvents[indexPath.row].event_home_team
+                print(" latestEvents[\(indexPath.row)].event_home_team  ::  \(latestEvents[indexPath.row].event_home_team ?? "-1")")
+                cell.awayTeam.text = latestEvents[indexPath.row].event_away_team
+                cell.dateOfMatch.text = latestEvents[indexPath.row].event_date
+                cell.timeOfMatch.text = latestEvents[indexPath.row].event_time
+                cell.scoreOfLiveMatch.text = latestEvents[indexPath.row].event_final_result
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath)
             }
@@ -249,9 +296,9 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as? LogoCollectionViewCell else { fatalError("Failed to dequeue LatestCell") }
             
-            if(teamsResults.count != 0){
-                if let teamLogoUrl = teamsResults[indexPath.row].team_logo,
-                   let teamUrl = URL(string: teamLogoUrl){
+            if(teamsLogos.count != 0){
+                if !teamsLogos[indexPath.row].isEmpty {
+                   let teamUrl = URL(string: teamsLogos[indexPath.row])
                     cell.logoOfTeam?.kf.setImage(with: teamUrl)
                 } else {
                     cell.logoOfTeam.image = UIImage(named: "man.png")
@@ -268,8 +315,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         if indexPath.section == 2 {
             let storyboard = UIStoryboard(name: "Details", bundle: nil)
             if let teamDetailsController = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController{
-                
-                teamDetailsController.teamDetailsUrl = fetchDataFromAPi?.formatURL(sport: sport, met: "Teams", teamId: "\(teamsResults[indexPath.row].team_key ?? 585)") ?? ""
+                teamDetailsController.teamDetailsUrl = sportViewModel?.getTeamsDetailsFormatedUrl(sport: sport, met: "Teams", teamId: "\(teamsKies[indexPath.row])") ?? ""
                 
                 teamDetailsController.sport = sport
                 present(teamDetailsController, animated: true, completion: nil)
@@ -282,7 +328,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBAction func btnFav(_ sender: Any) {
                 
-        guard let selectedLeague = upcomingResults.first else {
+        guard let selectedLeague = upcomingEvents.first else {
                 return
         }
         
@@ -311,7 +357,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func updateFavButtonImage() {
-        if let selectedLeague = upcomingResults.first, let leagueKey = selectedLeague.league_key {
+        if let selectedLeague = upcomingEvents.first, let leagueKey = selectedLeague.league_key {
             if dataManager.leagueExistsInCoreData(application: UIApplication.shared, leagueKey: "\(leagueKey)") {
                 isFavorited = true
                 favBtn.image = UIImage(systemName: "heart.fill")
@@ -324,4 +370,18 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         }
     }
     
+}
+
+
+struct UpcomingEvents{
+    var home_team_logo: String?
+    var away_team_logo: String?
+    var event_home_team: String?
+    var event_away_team: String?
+    var event_date: String?
+    var event_time: String?
+    var league_name: String?
+    var league_logo: String?
+    var event_final_result: String?
+    var league_key: Int?
 }

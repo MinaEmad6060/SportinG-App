@@ -10,17 +10,30 @@ import Foundation
 
 class SportViewModel: SportViewModelProtocol{
     
-    var bindResultToViewController : (()->())? = {}
     
+    
+    var bindUpcomingToViewController : (()->())? = {}
+    var bindLatestToViewController : (()->())? = {}
+    var bindLogosToViewController : (()->())? = {}
     var fetchDataFromApi = FetchDataFromApi()
-    
-    var sportDetails: SportDetails? {
+    var leaguesUpcomingDetails: SportDetails? {
         didSet{
-            (bindResultToViewController ?? {})()
+                (bindUpcomingToViewController ?? {})()
         }
     }
     
-   
+    var leagueLatestDetails: SportDetails? {
+        didSet{
+                (bindLatestToViewController ?? {})()
+        }
+    }
+    
+    var leagueTeamsLogos: SportDetails? {
+        didSet{
+                (bindLogosToViewController ?? {})()
+        }
+    }
+  
     
     func setSportUrl(selectedSport: Int) -> (String, String){
         var url = ""
@@ -48,19 +61,38 @@ class SportViewModel: SportViewModelProtocol{
     
     func getSportLeaguesFromNetworkService(url: String) {
         fetchDataFromApi.getSportData(url: url) { sportDetails in
-            self.sportDetails = sportDetails
+            self.leaguesUpcomingDetails = sportDetails
         }
     }
     
-    func getFormatedUrl(sport: String, met:String, leaguesKies: [Int], index: Int) -> String{
+    func getLeaguesFormatedUrl(sport: String, met:String, leaguesKies: [Int], index: Int) -> String{
         return fetchDataFromApi.formatURL(sport: sport, met: met,leagueId:"\(leaguesKies[index])")
+    }
+    
+    
+    func getTeamsDetailsFormatedUrl(sport: String, met: String, teamId: String) -> String{
+        return fetchDataFromApi.formatURL(sport: sport, met: met,teamId: teamId)
     }
     
 
     
     
-    func getDataFromNetworkService() {
-        
+    func getLeagueDetailsFromNetworkService(url: String) {
+        fetchDataFromApi.getSportData (url: url){ sportDetails in
+            self.leaguesUpcomingDetails = sportDetails
+        }
+    }
+    
+    func getLatestDetailsFromNetworkService(url: String) {
+        fetchDataFromApi.getSportData (url: url){ sportDetails in
+            self.leagueLatestDetails = sportDetails
+        }
+    }
+    
+    func getTeamsDetailsFromNetworkService(url: String) {
+        fetchDataFromApi.getSportData (url: url){ sportDetails in
+            self.leagueTeamsLogos = sportDetails
+        }
     }
     
     
