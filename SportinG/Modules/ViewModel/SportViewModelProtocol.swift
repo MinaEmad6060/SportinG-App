@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol SportViewModelProtocol{
     var bindUpcomingToViewController: (() -> ())? { get set }
@@ -24,4 +25,12 @@ protocol SportViewModelProtocol{
     func getLatestDetailsFromNetworkService(url: String)
     func getTeamsLogosFromNetworkService(url: String)
     func getTeamsDetailsFromNetworkService(url: String)
+    
+    func retrieveFavoriteLeagues()
+    func deleteFavoriteLeague(leagueKey: String)
+    func insertFavoriteLeague(leagueKey: String, leagueName: String, leagueLogo: String, sportName: String)
+    func isLeagueInFavorites(leagueKey: String) -> Bool
+    func getFavoriteLeagues() -> [NSManagedObject]
+    
+
 }

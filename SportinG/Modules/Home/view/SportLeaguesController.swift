@@ -96,6 +96,10 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
 
             leagueDetailsViewController.sport = sport
             present(leagueDetailsViewController, animated: true, completion: nil)
+            
+            leagueDetailsViewController.leagueKey = "\(self.sportViewModel?.leaguesUpcomingDetails?.result[indexPath.row].league_key ?? 4)"
+            leagueDetailsViewController.leagueName = self.sportViewModel?.leaguesUpcomingDetails?.result[indexPath.row].league_name ?? ""
+            leagueDetailsViewController.leagueLogo = self.sportViewModel?.leaguesUpcomingDetails?.result[indexPath.row].league_logo ?? ""
         }
     }
 

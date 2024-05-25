@@ -7,17 +7,14 @@
 
 import Foundation
 import CoreData
-import UIKit
 
 class CoreDataManager{
     
-    func saveToCoreData(application: UIApplication, leagueKey: String, leagueName: String, leagueLogo: String, sportName: String) {
-        guard let appDelegate = application.delegate as? AppDelegate else {
-            print("Unable to get AppDelegate")
-            return
-        }
+    let coreDataUtils = CoreDataUtils()
+    
+    func saveToCoreData(leagueKey: String, leagueName: String, leagueLogo: String, sportName: String) {
         
-        let context = appDelegate.persistentContainer.viewContext
+        let context = coreDataUtils.appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)
         let favNews = NSManagedObject(entity: entity!, insertInto: context)
@@ -35,13 +32,9 @@ class CoreDataManager{
         }
     }
     
-    func deleteFromCoreData(application: UIApplication, leagueKey: String) {
-        guard let appDelegate = application.delegate as? AppDelegate else {
-            print("Unable to get AppDelegate")
-            return
-        }
+    func deleteFromCoreData(leagueKey: String) {
         
-        let context = appDelegate.persistentContainer.viewContext
+        let context = coreDataUtils.appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteLeagues")
         fetchRequest.predicate = NSPredicate(format: "leagueKey = %@", leagueKey)
@@ -59,13 +52,9 @@ class CoreDataManager{
         }
     }
     
-    func retrieveFromCoreData(application: UIApplication) -> [NSManagedObject]? {
-        guard let appDelegate = application.delegate as? AppDelegate else {
-            print("Unable to get AppDelegate")
-            return nil
-        }
+    func retrieveFromCoreData() -> [NSManagedObject]? {
         
-        let context = appDelegate.persistentContainer.viewContext
+        let context = coreDataUtils.appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteLeagues")
         
@@ -78,13 +67,9 @@ class CoreDataManager{
         }
     }
     
-    func leagueExistsInCoreData(application: UIApplication, leagueKey: String) -> Bool {
-        guard let appDelegate = application.delegate as? AppDelegate else {
-            print("Unable to get AppDelegate")
-            return false
-        }
+    func leagueExistsInCoreData(leagueKey: String) -> Bool {
         
-        let context = appDelegate.persistentContainer.viewContext
+        let context = coreDataUtils.appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteLeagues")
         fetchRequest.predicate = NSPredicate(format: "leagueKey = %@", leagueKey)
