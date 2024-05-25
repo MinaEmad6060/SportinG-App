@@ -93,6 +93,10 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
                                         leagueId: "\(sportLeagues[indexPath.row].league_key ?? 4)") ?? ""
             leagueDetailsViewController.sport = sport
             present(leagueDetailsViewController, animated: true, completion: nil)
+            
+            leagueDetailsViewController.leagueKey = "\(sportLeagues[indexPath.row].league_key ?? 4)"
+            leagueDetailsViewController.leagueName = sportLeagues[indexPath.row].league_name ?? "League"
+            leagueDetailsViewController.leagueLogo = sportLeagues[indexPath.row].league_logo ?? "League"
         }
     }
 

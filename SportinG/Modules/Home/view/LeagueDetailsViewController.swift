@@ -9,8 +9,8 @@ import UIKit
 import Kingfisher
 
 class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    var dataManager = CoreDataManager()
+        
+    var sportViewModel: SportViewModelProtocol!
     
     var isFavorited = false
     
@@ -32,8 +32,14 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     var liveScoreResults: [Result] = []
     var teamsResults: [Result] = []
     
+    var leagueName = ""
+    var leagueLogo = ""
+    var leagueKey = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        sportViewModel = SportViewModel()
+        
         leagueDetailsCollectionView.delegate = self
         leagueDetailsCollectionView.dataSource = self
         
@@ -261,7 +267,6 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             return cell
         }
         
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -281,29 +286,18 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     
     
     @IBAction func btnFav(_ sender: Any) {
-                
-        guard let selectedLeague = upcomingResults.first else {
-                return
-        }
-        
-        let leagueKey: String
-            if let key = selectedLeague.league_key {
-                leagueKey = "\(key)"
-            } else {
-                leagueKey = ""
-            }
-        
-        let leagueName = selectedLeague.league_name ?? ""
-        let leagueLogo = selectedLeague.league_logo ?? ""
+        let leagueKey = self.leagueKey
+        let leagueName = self.leagueName
+        let leagueLogo = self.leagueLogo
         let sportName = sport
                 
-        if !dataManager.leagueExistsInCoreData(application: UIApplication.shared, leagueKey: leagueKey) {
-            dataManager.saveToCoreData(application: UIApplication.shared, leagueKey: leagueKey, leagueName: leagueName, leagueLogo: leagueLogo, sportName: sportName)
-            print("League added to favorites!")
+        if !sportViewModel.isLeagueInFavorites(leagueKey: leagueKey) {
+            sportViewModel.insertFavoriteLeague(leagueKey: leagueKey, leagueName: leagueName, leagueLogo: leagueLogo, sportName: sportName)
+            print("League added to favorites!, leagueKey: \(leagueKey) \n ,leagueName: \(leagueName), leagueLogo: \(leagueLogo)")
             isFavorited = true
             favBtn.image = UIImage(systemName: "heart.fill")
         } else {
-            dataManager.deleteFromCoreData(application: UIApplication.shared, leagueKey: leagueKey)
+            sportViewModel.deleteFavoriteLeague(leagueKey: leagueKey)
             print("League removed from favorites!")
             isFavorited = false
             favBtn.image = UIImage(systemName: "heart")
@@ -311,16 +305,14 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func updateFavButtonImage() {
-        if let selectedLeague = upcomingResults.first, let leagueKey = selectedLeague.league_key {
-            if dataManager.leagueExistsInCoreData(application: UIApplication.shared, leagueKey: "\(leagueKey)") {
-                isFavorited = true
-                favBtn.image = UIImage(systemName: "heart.fill")
-                print("isssssssss favorite")
-            } else {
-                isFavorited = false
-                favBtn.image = UIImage(systemName: "heart")
-                print("issssssss not favorite")
-            }
+        if sportViewModel.isLeagueInFavorites(leagueKey: self.leagueKey) {
+            isFavorited = true
+            favBtn.image = UIImage(systemName: "heart.fill")
+            print("is favorite ,leagueKey: \(self.leagueKey)")
+        } else {
+            isFavorited = false
+            favBtn.image = UIImage(systemName: "heart")
+            print("not favorite ,leagueKey: \(self.leagueKey)")
         }
     }
     
