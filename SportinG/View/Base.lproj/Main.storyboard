@@ -18,16 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Splash Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzx-v6-aQa">
-                                <rect key="frame" x="109" y="411" width="154" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SportLogo" translatesAutoresizingMaskIntoConstraints="NO" id="UAV-lw-FbE">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3hO-SB-HPy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3hO-SB-HPy" firstAttribute="bottom" secondItem="UAV-lw-FbE" secondAttribute="bottom" id="4mf-FG-vkY"/>
+                            <constraint firstItem="UAV-lw-FbE" firstAttribute="top" secondItem="3hO-SB-HPy" secondAttribute="top" id="S21-G4-3b7"/>
+                            <constraint firstItem="3hO-SB-HPy" firstAttribute="trailing" secondItem="UAV-lw-FbE" secondAttribute="trailing" id="UJS-bq-b8V"/>
+                            <constraint firstItem="UAV-lw-FbE" firstAttribute="leading" secondItem="3hO-SB-HPy" secondAttribute="leading" id="fNX-GD-1bu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qm1-75-l6J"/>
                     <connections>
@@ -47,13 +49,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-Ax-1Mz">
-                                <rect key="frame" x="237" y="91" width="125" height="35"/>
+                                <rect key="frame" x="288" y="102" width="24" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Go To Details"/>
-                                <connections>
-                                    <segue destination="dpX-WG-wDm" kind="show" id="EnQ-bV-dXJ"/>
-                                </connections>
+                                <buttonConfiguration key="configuration" style="plain" title=""/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7Jb-nh-63U"/>
@@ -261,6 +260,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SportLogo" width="225" height="225"/>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="homekit" catalog="system" width="128" height="104"/>

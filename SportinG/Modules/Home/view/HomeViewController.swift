@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         
         sportsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        sportsCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
+        sportsCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
         sportsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         sportsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         sportsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
@@ -125,8 +125,8 @@ class CustomSportCell: UICollectionViewCell{
             sportImgView.topAnchor.constraint(equalTo: topAnchor),
             sportImgView.leadingAnchor.constraint(equalTo: leadingAnchor),
             sportImgView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            sportImgView.heightAnchor.constraint(equalToConstant: 150),
-            sportImgView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 60),
+            sportImgView.heightAnchor.constraint(equalToConstant: 160),
+            sportImgView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 30),
                    
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),

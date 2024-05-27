@@ -108,7 +108,7 @@ class SportViewModel: SportViewModelProtocol{
         }
     }
 
-    let dataManager = CoreDataManager()
+    var dataManager = CoreDataManager()
     var favoriteLeagues: [NSManagedObject] = []
     var sportDetails = SportDetails()
     

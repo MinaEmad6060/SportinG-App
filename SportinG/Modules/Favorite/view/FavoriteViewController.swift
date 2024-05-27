@@ -17,6 +17,11 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     
     var fetchDataFromAPi : FetchDataFromApi?
     
+    var leaguesNames: [String] = [String]()
+    var leaguesKies: [Int] = [Int]()
+    var leaguesImages: [String]?
+    var numberOfLeagues = 0
+    
     let reachability = try! Reachability()
     
     override func viewDidLoad() {
@@ -38,6 +43,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         backgroundImageView?.contentMode = .scaleAspectFit
         favoriteTableView.backgroundView = backgroundImageView
         backgroundImageView?.isHidden = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,10 +101,14 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
             let storyboard = UIStoryboard(name: "Details", bundle: nil)
             if let leagueDetailsViewController = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as? LeagueDetailsViewController {
                 let sportName = selectedLeague.value(forKey: "sportName") as! String
+                
                 leagueDetailsViewController.eventsUrl = fetchDataFromAPi?.formatURL(sport: sportName, met: "Fixtures", leagueId: leagueKey) ?? ""
+                
                 leagueDetailsViewController.teamsUrl = fetchDataFromAPi?.formatURL(sport: sportName, met: "Teams", leagueId: leagueKey) ?? ""
+
                 leagueDetailsViewController.sport = sportName
                 self.present(leagueDetailsViewController, animated: true, completion: nil)
+                
                 leagueDetailsViewController.leagueKey = "\(leagueKey)"
                 leagueDetailsViewController.leagueName = leagueName
                 leagueDetailsViewController.leagueLogo = selectedLeague.value(forKey: "leagueLogo") as! String

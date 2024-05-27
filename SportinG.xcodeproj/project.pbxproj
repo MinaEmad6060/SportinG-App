@@ -23,6 +23,8 @@
 		51DAC53C2C009E3300C91175 /* SportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DAC53B2C009E3300C91175 /* SportViewModel.swift */; };
 		51DAC53E2C009E5100C91175 /* SportViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DAC53D2C009E5100C91175 /* SportViewModelProtocol.swift */; };
 		51E07CCC2C024F2000C88417 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E07CCB2C024F2000C88417 /* CoreDataUtils.swift */; };
+		51E07CCF2C025C3600C88417 /* SportViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E07CCE2C025C3600C88417 /* SportViewModelTests.swift */; };
+		51E07CD62C02A9D100C88417 /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E07CD52C02A9D100C88417 /* CoreDataManagerTest.swift */; };
 		51F024D02BFD13D60015A3A2 /* SportCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F024CE2BFD13D60015A3A2 /* SportCustomCell.swift */; };
 		51F024D12BFD13D60015A3A2 /* SportCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51F024CF2BFD13D60015A3A2 /* SportCustomCell.xib */; };
 		51F3F5422BFB790C000EA9B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3F5412BFB790C000EA9B9 /* AppDelegate.swift */; };
@@ -78,6 +80,8 @@
 		51DAC53B2C009E3300C91175 /* SportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewModel.swift; sourceTree = "<group>"; };
 		51DAC53D2C009E5100C91175 /* SportViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewModelProtocol.swift; sourceTree = "<group>"; };
 		51E07CCB2C024F2000C88417 /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
+		51E07CCE2C025C3600C88417 /* SportViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewModelTests.swift; sourceTree = "<group>"; };
+		51E07CD52C02A9D100C88417 /* CoreDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTest.swift; sourceTree = "<group>"; };
 		51F024CE2BFD13D60015A3A2 /* SportCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCustomCell.swift; sourceTree = "<group>"; };
 		51F024CF2BFD13D60015A3A2 /* SportCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportCustomCell.xib; sourceTree = "<group>"; };
 		51F3F53E2BFB790C000EA9B9 /* SportinG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportinG.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +216,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		51E07CCD2C025C0200C88417 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				51E07CCE2C025C3600C88417 /* SportViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		51E07CD42C02A99600C88417 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				51E07CD52C02A9D100C88417 /* CoreDataManagerTest.swift */,
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
 		51F3F5352BFB790C000EA9B9 = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +271,8 @@
 		51F3F55A2BFB7910000EA9B9 /* SportinGTests */ = {
 			isa = PBXGroup;
 			children = (
+				51E07CD42C02A99600C88417 /* CoreDataManager */,
+				51E07CCD2C025C0200C88417 /* ViewModel */,
 				51F3F55B2BFB7910000EA9B9 /* SportinGTests.swift */,
 			);
 			path = SportinGTests;
@@ -588,7 +610,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51E07CD62C02A9D100C88417 /* CoreDataManagerTest.swift in Sources */,
 				51F3F55C2BFB7910000EA9B9 /* SportinGTests.swift in Sources */,
+				51E07CCF2C025C3600C88417 /* SportViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,6 +847,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
@@ -843,6 +868,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
@@ -862,6 +888,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = swift.SportinGUITests;
@@ -880,6 +907,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = swift.SportinGUITests;
