@@ -196,13 +196,6 @@
 			path = NetworkTests;
 			sourceTree = "<group>";
 		};
-		40C9ADF32C04206400764E37 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		40D32FCA2BFEA499004443EE /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,7 +289,6 @@
 			children = (
 				51E07CD42C02A99600C88417 /* CoreDataManager */,
 				51E07CCD2C025C0200C88417 /* ViewModel */,
-				40C9ADF32C04206400764E37 /* ViewModel */,
 				40C9ADEE2C040DC800764E37 /* NetworkTests */,
 				51F3F55B2BFB7910000EA9B9 /* SportinGTests.swift */,
 			);
