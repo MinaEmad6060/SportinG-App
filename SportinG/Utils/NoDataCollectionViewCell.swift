@@ -12,7 +12,6 @@ class NoDataCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var noDataImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }

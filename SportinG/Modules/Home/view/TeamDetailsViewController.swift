@@ -55,11 +55,9 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Upcoming URL : \(teamDetailsUrl)")
         
         sportViewModel?.getTeamsDetailsFromNetworkService(url: teamDetailsUrl)
         sportViewModel?.bindDetailsToViewController = {
-            print("Tesssssssst :::: \(self.sportViewModel?.leagueTeamsDetails?.result[0].team_name ?? "noooone")")
             
             self.teamName.text = self.sportViewModel?.leagueTeamsDetails?.result[0].team_name
 
@@ -93,8 +91,6 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
             
-            print("Players :: \(self.numberOfPlayers)")
-            print("teamDetailsResults.count :: \(self.teamDetailsResults.count)")
             DispatchQueue.main.async {
                 self.teamDetailsTableView.reloadData()
             }

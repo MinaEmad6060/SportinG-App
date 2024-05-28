@@ -27,7 +27,6 @@ final class MockNetworkServiceTests: XCTestCase {
         network.getData(fromURL: "") { sportDetails in
             if sportDetails != nil{
                 XCTAssertEqual(sportDetails?[0].result[0].league_name, "UEFA Europa League")
-                print("done")
             } else{
                 XCTFail()
                 return
@@ -40,7 +39,6 @@ final class MockNetworkServiceTests: XCTestCase {
     func testGetDataFromAPI(){
         network.getDataFromFakeJSON{ result in
             XCTAssertNotNil(result)
-            print("done")
         }
     }
     

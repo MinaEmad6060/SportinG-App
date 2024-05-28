@@ -39,7 +39,6 @@ class SportCustomCell: UITableViewCell {
         private func setupContainerView() {
             contentView.addSubview(containerView)
             
-            // Set constraints for the container view to create padding
             NSLayoutConstraint.activate([
                 containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 3),
                 containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
@@ -50,13 +49,10 @@ class SportCustomCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

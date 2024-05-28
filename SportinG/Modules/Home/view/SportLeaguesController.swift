@@ -30,7 +30,6 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
         super.viewDidLoad()
         leaguesImages = [String]()
         sportViewModel = SportViewModel()
-        print("Leagues Screen Loaded")
 
         sportLeaguesTable.delegate = self
         sportLeaguesTable.dataSource = self

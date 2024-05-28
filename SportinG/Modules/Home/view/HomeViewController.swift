@@ -88,9 +88,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         if reachability.connection == .unavailable {
                showNoInternetAlert()
         }else{
-            
-            print("sport \(indexPath.row + 1) is tapped")
-           
+                       
             guard let sportLeaguesController = storyboard?.instantiateViewController(withIdentifier: "SportLeagues") as? SportLeaguesController else {
                 return
             }

@@ -26,14 +26,10 @@ class LeagueDetailsCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.contentView.layer.cornerRadius = 30.0
         self.contentView.layer.masksToBounds = false
         self.contentView.clipsToBounds = true
         self.contentView.backgroundColor = UIColor(red: 0.25, green: 0.5, blue: 1.0, alpha: 0.05)
-
-
-        // Optional: Set border color and width
         self.contentView.layer.borderColor = UIColor.blue.cgColor
         self.contentView.layer.borderWidth = 2.0
     }

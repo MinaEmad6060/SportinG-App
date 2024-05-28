@@ -21,10 +21,8 @@ class FetchDataFromApi{
     
     func getSportData(url: String, handler: @escaping (SportDetails)->Void){
         let urlFB = URL(string: url)
-        print("Loading")
         guard let urlFB = urlFB else{return}
         
-        print("getFB")
      
         AF.request(urlFB).responseDecodable(of: SportDetails.self) { response in
             switch response.result {

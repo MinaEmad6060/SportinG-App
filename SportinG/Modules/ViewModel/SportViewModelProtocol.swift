@@ -31,5 +31,4 @@ protocol SportViewModelProtocol{
     func isLeagueInFavorites(leagueKey: String) -> Bool
     func getFavoriteLeagues() -> [NSManagedObject]
     
-
 }

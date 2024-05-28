@@ -9,7 +9,6 @@ import UIKit
 
 class LogoCollectionViewCell: UICollectionViewCell {
     
-    
     @IBOutlet weak var logoOfTeam: UIImageView!
     
 }

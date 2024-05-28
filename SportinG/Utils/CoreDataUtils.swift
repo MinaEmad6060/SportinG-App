@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 class CoreDataUtils{
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 }

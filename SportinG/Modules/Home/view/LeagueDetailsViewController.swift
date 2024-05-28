@@ -113,10 +113,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         }
         
         sportViewModel?.getLatestDetailsFromNetworkService(url: eventsUrl+"&from=2023-05-29&to=2024-05-29")
-        print("Latest eventsUrl  :: \(eventsUrl+"&from=2023-05-29&to=2024-05-29")")
         sportViewModel?.bindLatestToViewController = {
             self.numberOfLatest = self.sportViewModel?.leagueLatestDetails?.result.count ?? 0
-            print("numberOfLatest : \(self.numberOfLatest)")
             for i in 0..<self.numberOfLatest {
                 var latestEvent = Events()
                 latestEvent.away_team_logo = self.sportViewModel?.leagueLatestDetails?.result[i].away_team_logo
@@ -140,7 +138,6 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 self.latestEvents.append(latestEvent)
                 
             }
-            print("self.latestEvents : \(self.latestEvents.count)")
             
             DispatchQueue.main.async {
                 self.leagueDetailsCollectionView.reloadData()
@@ -148,10 +145,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         }
         
         sportViewModel?.getTeamsLogosFromNetworkService(url: teamsUrl)
-        print("Latest eventsUrl  :: \(teamsUrl)")
         sportViewModel?.bindLogosToViewController = {
             self.numberOfTeams = self.sportViewModel?.leagueTeamsLogos?.result.count ?? 0
-            print("numberOfLatest : \(self.numberOfLatest)")
             for i in 0..<self.numberOfTeams {
                 var teamLogo = ""
                 var teamKey = -1
@@ -348,7 +343,6 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         }else if indexPath.section==1 {
            
            
-            print(" section1 latestEvents.count  ::  \(latestEvents.count)")
             if(latestEvents.count > 0){
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue Cell") }
                 
@@ -364,7 +358,6 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                     cell.awayImage.image = imagePlaceHolder
                 }
                 cell.homeTeam.text = homeTeamName
-                print(" latestEvents[\(indexPath.row)].event_home_team  ::  \(latestEvents[indexPath.row].event_home_team ?? "-1")")
                 cell.awayTeam.text = awayTeamName
                 cell.dateOfMatch.text = dateOfMatch
                 cell.timeOfMatch.text = latestEvents[indexPath.row].event_time
@@ -474,12 +467,10 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 
         if !sportViewModel.isLeagueInFavorites(leagueKey: leagueKey) {
             sportViewModel.insertFavoriteLeague(leagueKey: leagueKey, leagueName: leagueName, leagueLogo: leagueLogo, sportName: sportName)
-            print("League added to favorites!, leagueKey: \(leagueKey) \n ,leagueName: \(leagueName), leagueLogo: \(leagueLogo)")
             isFavorited = true
             favBtn.image = UIImage(systemName: "heart.fill")
         } else {
             sportViewModel.deleteFavoriteLeague(leagueKey: leagueKey)
-            print("League removed from favorites!")
             isFavorited = false
             favBtn.image = UIImage(systemName: "heart")
         }
@@ -489,11 +480,9 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         if sportViewModel.isLeagueInFavorites(leagueKey: self.leagueKey) {
             isFavorited = true
             favBtn.image = UIImage(systemName: "heart.fill")
-            print("is favorite ,leagueKey: \(self.leagueKey)")
         } else {
             isFavorited = false
             favBtn.image = UIImage(systemName: "heart")
-            print("not favorite ,leagueKey: \(self.leagueKey)")
 
         }
     }

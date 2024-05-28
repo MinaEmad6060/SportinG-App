@@ -118,9 +118,6 @@ class SportViewModel: SportViewModelProtocol{
     func insertFavoriteLeague(leagueKey: String, leagueName: String, leagueLogo: String, sportName: String) {
         if !dataManager.leagueExistsInCoreData(leagueKey: leagueKey) {
             dataManager.saveToCoreData(leagueKey: leagueKey, leagueName: leagueName, leagueLogo: leagueLogo, sportName: sportName)
-            print("League added to favorites!")
-        } else {
-            print("League already exists in favorites!")
         }
     }
     

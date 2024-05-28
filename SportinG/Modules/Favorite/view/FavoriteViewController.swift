@@ -95,7 +95,6 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
             let selectedLeague = sportViewModel.getFavoriteLeagues()[indexPath.row]
             let leagueName = selectedLeague.value(forKey: "leagueName") as! String
             let leagueKey = selectedLeague.value(forKey: "leagueKey") as! String
-            print("Selected League: \(leagueName), League Key: \(leagueKey)")
 
             // Proceed with navigation
             let storyboard = UIStoryboard(name: "Details", bundle: nil)

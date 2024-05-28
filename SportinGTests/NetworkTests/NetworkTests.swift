@@ -42,9 +42,7 @@ final class NetworkTests: XCTestCase {
         
         fetchDataFromApi?.getSportData(url: url){listOfUsers in
        
-            XCTAssertEqual(listOfUsers.result.count, 865)
-            print("Count Of users : \(listOfUsers.result.count)")
-            
+            XCTAssertEqual(listOfUsers.result.count, 865)            
             expectation.fulfill()
             
         }
