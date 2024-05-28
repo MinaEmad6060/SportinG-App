@@ -29,6 +29,21 @@ struct Result: Decodable{
     var team_name: String?
     var players: [Player]?
     var coaches: [Coach]?
+    
+    //tennis
+    var event_first_player: String?
+    var event_second_player: String?
+    var event_first_player_logo: String?
+    var event_second_player_logo: String?
+    
+    //basketBall
+    var event_home_team_logo: String?
+    var event_away_team_logo: String?
+    
+    //cricket
+    var event_date_start: String?
+    var event_away_final_result: String?
+
 }
 
 

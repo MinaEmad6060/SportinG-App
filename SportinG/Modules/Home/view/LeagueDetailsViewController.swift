@@ -10,24 +10,19 @@ import Kingfisher
 
 
 
-struct Events{
-    var home_team_logo: String?
-    var away_team_logo: String?
-    var event_home_team: String?
-    var event_away_team: String?
-    var event_date: String?
-    var event_time: String?
-    var league_name: String?
-    var league_logo: String?
-    var event_final_result: String?
-    var league_key: Int?
-}
-
 class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
         
     var sportViewModel: SportViewModelProtocol!
     
     var isFavorited = false
+    
+    var homeImageUrl: String?
+    var awayImageUrl: String?
+    var homeTeamName: String?
+    var awayTeamName: String?
+    var dateOfMatch: String?
+    var scoreOfLiveMatch: String?
+    var imagePlaceHolder: UIImage?
     
     @IBOutlet weak var favBtn: UIBarButtonItem!
     
@@ -98,6 +93,14 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 upcomingEvent.league_key = self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_key
                 upcomingEvent.league_name = self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_name
                 upcomingEvent.league_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].league_logo
+                upcomingEvent.event_first_player_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_first_player_logo
+                upcomingEvent.event_second_player_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_second_player_logo
+                upcomingEvent.event_first_player = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_first_player
+                upcomingEvent.event_second_player = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_second_player
+                upcomingEvent.event_home_team_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_home_team_logo
+                upcomingEvent.event_away_team_logo = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_away_team_logo
+//                upcomingEvent.event_away_final_result = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_away_final_result
+                upcomingEvent.event_date_start = self.sportViewModel?.leaguesUpcomingDetails?.result[i].event_date_start
                 self.upcomingEvents.append(upcomingEvent)
             }
             
@@ -124,6 +127,14 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 latestEvent.league_name = self.sportViewModel?.leagueLatestDetails?.result[i].league_name
                 latestEvent.league_logo = self.sportViewModel?.leagueLatestDetails?.result[i].league_logo
                 latestEvent.event_final_result = self.sportViewModel?.leagueLatestDetails?.result[i].event_final_result
+                latestEvent.event_first_player_logo = self.sportViewModel?.leagueLatestDetails?.result[i].event_first_player_logo
+                latestEvent.event_second_player_logo = self.sportViewModel?.leagueLatestDetails?.result[i].event_second_player_logo
+                latestEvent.event_first_player = self.sportViewModel?.leagueLatestDetails?.result[i].event_first_player
+                latestEvent.event_second_player = self.sportViewModel?.leagueLatestDetails?.result[i].event_second_player
+                latestEvent.event_home_team_logo = self.sportViewModel?.leagueLatestDetails?.result[i].event_home_team_logo
+                latestEvent.event_away_team_logo = self.sportViewModel?.leagueLatestDetails?.result[i].event_away_team_logo
+                latestEvent.event_away_final_result = self.sportViewModel?.leagueLatestDetails?.result[i].event_away_final_result
+                latestEvent.event_date_start = self.sportViewModel?.leagueLatestDetails?.result[i].event_date_start
                 self.latestEvents.append(latestEvent)
                 
             }
@@ -240,21 +251,25 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         if section==0 {
             if 0 < upcomingEvents.count && upcomingEvents.count < 50 {
                 return upcomingEvents.count
+            }else if upcomingEvents.count == 0{
+                return 1
             }else {
                 return 10
             }
         }else if section==1{
             if 0 < latestEvents.count && latestEvents.count < 50 {
                 return latestEvents.count
+            }else if latestEvents.count == 0{
+                return 1
             }else {
                 return 10
             }
             
         }else{
-            if teamsLogos.count != 0{
+            if teamsLogos.count > 0{
                 return teamsLogos.count
             }else {
-                return 10
+                return 1
             }
         }
         
@@ -273,8 +288,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                     cell.homeImage.kf.setImage(with: homeUrl)
                     cell.awayImage.kf.setImage(with: awayUrl)
                 } else {
-                    cell.homeImage.image = UIImage(named: "man.png")
-                    cell.awayImage.image = UIImage(named: "man.png")
+                    cell.homeImage.image = imagePlaceHolder
+                    cell.awayImage.image = imagePlaceHolder
                 }
                 cell.homeTeam.text = upcomingEvents[indexPath.row].event_home_team
                 cell.awayTeam.text = upcomingEvents[indexPath.row].event_away_team
@@ -288,24 +303,25 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue Cell") }
             
             print(" section1 latestEvents.count  ::  \(latestEvents.count)")
-            
             if(latestEvents.count != 0){
-                if let homeImageUrl = latestEvents[indexPath.row].home_team_logo,
+                setCellDetails(sport: sport, indexPath: indexPath.row)
+                if let homeImageUrl = homeImageUrl,
                    let homeUrl = URL(string: homeImageUrl),
-                   let awayImageUrl = latestEvents[indexPath.row].away_team_logo,
+                   let awayImageUrl = awayImageUrl,
                    let awayUrl = URL(string: awayImageUrl) {
                     cell.homeImage.kf.setImage(with: homeUrl)
                     cell.awayImage.kf.setImage(with: awayUrl)
                 } else {
-                    cell.homeImage.image = UIImage(named: "man.png")
-                    cell.awayImage.image = UIImage(named: "man.png")
+                    cell.homeImage.image = imagePlaceHolder
+                    cell.awayImage.image = imagePlaceHolder
                 }
-                cell.homeTeam.text = latestEvents[indexPath.row].event_home_team
+                cell.homeTeam.text = homeTeamName
                 print(" latestEvents[\(indexPath.row)].event_home_team  ::  \(latestEvents[indexPath.row].event_home_team ?? "-1")")
-                cell.awayTeam.text = latestEvents[indexPath.row].event_away_team
-                cell.dateOfMatch.text = latestEvents[indexPath.row].event_date
+                cell.awayTeam.text = awayTeamName
+                cell.dateOfMatch.text = dateOfMatch
                 cell.timeOfMatch.text = latestEvents[indexPath.row].event_time
-                cell.scoreOfLiveMatch.text = latestEvents[indexPath.row].event_final_result
+                cell.scoreOfLiveMatch.text = scoreOfLiveMatch
+
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath)
             }
@@ -319,7 +335,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                    let teamUrl = URL(string: teamsLogos[indexPath.row])
                     cell.logoOfTeam?.kf.setImage(with: teamUrl)
                 } else {
-                    cell.logoOfTeam.image = UIImage(named: "man.png")
+                    cell.logoOfTeam.image = imagePlaceHolder
                 }
             }
             
@@ -337,6 +353,52 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 teamDetailsController.sport = sport
                 present(teamDetailsController, animated: true, completion: nil)
             }
+        }
+    }
+    
+    func setCellDetails(sport: String, indexPath: Int){
+        switch sport {
+            case "football":
+            homeImageUrl = latestEvents[indexPath].home_team_logo ?? ""
+            awayImageUrl = latestEvents[indexPath].away_team_logo ?? ""
+            homeTeamName = latestEvents[indexPath].event_home_team ?? ""
+            awayTeamName = latestEvents[indexPath].event_away_team ?? ""
+            dateOfMatch = latestEvents[indexPath].event_date ?? ""
+            scoreOfLiveMatch = latestEvents[indexPath].event_final_result ?? ""
+            imagePlaceHolder = UIImage(named: "footballlogo")
+           
+            case "basketball":
+            homeImageUrl = latestEvents[indexPath].event_home_team_logo ?? ""
+            awayImageUrl = latestEvents[indexPath].event_away_team_logo ?? ""
+            homeTeamName = latestEvents[indexPath].event_home_team ?? ""
+            awayTeamName = latestEvents[indexPath].event_away_team ?? ""
+            dateOfMatch = latestEvents[indexPath].event_date ?? ""
+            scoreOfLiveMatch = latestEvents[indexPath].event_final_result ?? ""
+            imagePlaceHolder = UIImage(named: "basketballlogo")
+
+            
+            case "cricket":
+            homeImageUrl = latestEvents[indexPath].event_home_team_logo ?? ""
+            awayImageUrl = latestEvents[indexPath].event_away_team_logo ?? ""
+            homeTeamName = latestEvents[indexPath].event_home_team ?? ""
+            awayTeamName = latestEvents[indexPath].event_away_team ?? ""
+            dateOfMatch = latestEvents[indexPath].event_date_start ?? ""
+            scoreOfLiveMatch = latestEvents[indexPath].event_away_final_result ?? ""
+            imagePlaceHolder = UIImage(named: "cricketlogo")
+
+            
+            case "tennis":
+            homeImageUrl = latestEvents[indexPath].event_first_player_logo ?? ""
+            awayImageUrl = latestEvents[indexPath].event_second_player_logo ?? ""
+            homeTeamName = latestEvents[indexPath].event_first_player ?? ""
+            awayTeamName = latestEvents[indexPath].event_second_player ?? ""
+            dateOfMatch = latestEvents[indexPath].event_date ?? ""
+            scoreOfLiveMatch = latestEvents[indexPath].event_final_result ?? ""
+            imagePlaceHolder = UIImage(named: "tennislogo")
+
+            
+            default:
+                break
         }
     }
     
@@ -379,4 +441,33 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
 }
+
+
+struct Events{
+    var home_team_logo: String?
+    var away_team_logo: String?
+    var event_home_team: String?
+    var event_away_team: String?
+    var event_date: String?
+    var event_time: String?
+    var league_name: String?
+    var league_logo: String?
+    var event_final_result: String?
+    var league_key: Int?
+    
+    //tennis
+    var event_first_player: String?
+    var event_second_player: String?
+    var event_first_player_logo: String?
+    var event_second_player_logo: String?
+    
+    //basketBall
+    var event_home_team_logo: String?
+    var event_away_team_logo: String?
+    
+    //cricket
+    var event_date_start: String?
+    var event_away_final_result: String?
+}
+
 

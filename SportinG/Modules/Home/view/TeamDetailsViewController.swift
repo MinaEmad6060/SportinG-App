@@ -56,7 +56,25 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         sportViewModel?.getTeamsDetailsFromNetworkService(url: teamDetailsUrl)
         sportViewModel?.bindDetailsToViewController = {
+            print("Tesssssssst :::: \(self.sportViewModel?.leagueTeamsDetails?.result[0].team_name ?? "noooone")")
             
+            self.teamName.text = self.sportViewModel?.leagueTeamsDetails?.result[0].team_name
+
+            if let teamImageUrl = self.sportViewModel?.leagueTeamsDetails?.result[0].team_logo,
+               let teamUrl = URL(string: teamImageUrl){
+                self.teamImageView.kf.setImage(with: teamUrl)
+            }else{
+                if self.sport == "football"{
+                    self.teamImageView.image  = UIImage(named: "footballlogo")
+                }else if self.sport == "basketball"{
+                    self.teamImageView.image  = UIImage(named: "basketballlogo")
+                }else if self.sport == "cricket"{
+                    self.teamImageView.image  = UIImage(named: "cricketlogo")
+                }else if self.sport == "tennis"{
+                    self.teamImageView.image  = UIImage(named: "tennislogo")
+                }
+            }
+               
             self.numberOfPlayers = self.sportViewModel?.leagueTeamsDetails?.result[0].players?.count ?? 0
             
             var teamDetails = TeamDetails()
@@ -65,8 +83,8 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 teamDetails.player_image = self.sportViewModel?.leagueTeamsDetails?.result[0].players?[i].player_image
                 teamDetails.player_name = self.sportViewModel?.leagueTeamsDetails?.result[0].players?[i].player_name
                 
-                teamDetails.team_logo = self.sportViewModel?.leagueTeamsDetails?.result[0].team_logo
-                teamDetails.team_name = self.sportViewModel?.leagueTeamsDetails?.result[0].team_name
+//                teamDetails.team_logo = self.sportViewModel?.leagueTeamsDetails?.result[0].team_logo
+//                teamDetails.team_name = self.sportViewModel?.leagueTeamsDetails?.result[0].team_name
                 
                 self.teamDetailsResults.append(teamDetails)
             }
@@ -81,25 +99,22 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if teamDetailsResults.count != 0 {
+        if teamDetailsResults.count > 0 {
             return teamDetailsResults.count
         }else{
-            return 10
+            return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "SportCustomCell", for: indexPath) as! SportCustomCell
-        if(teamDetailsResults.count != 0){
-            if let teamImageUrl = teamDetailsResults[0].team_logo,
-               let teamUrl = URL(string: teamImageUrl),
-               let playerImageUrl = teamDetailsResults[indexPath.row].player_image,
+        if(teamDetailsResults.count > 0){
+            if let playerImageUrl = teamDetailsResults[indexPath.row].player_image,
                let playerUrl = URL(string: playerImageUrl){
-                self.teamImageView.kf.setImage(with: teamUrl)
                 cell.imgCustomCell.kf.setImage(with: playerUrl)
             }
-            self.teamName.text = teamDetailsResults[indexPath.row].team_name
-            self.coachName.text = teamDetailsResults[indexPath.row].coach_name
+//            self.teamName.text = self.sportViewModel?.leagueTeamsDetails?.result[0].team_name
+            self.coachName.text = teamDetailsResults[0].coach_name
             
             cell.labelCustomCell.text = teamDetailsResults[indexPath.row].player_name
         }
