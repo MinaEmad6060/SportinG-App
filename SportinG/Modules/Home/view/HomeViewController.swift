@@ -141,9 +141,10 @@ class CustomSportCell: UICollectionViewCell{
         //contentView.backgroundColor = UIColor.clear
         contentView.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
-        
+        contentView.backgroundColor = UIColor(red: 0.25, green: 0.5, blue: 1.0, alpha: 0.05)
+
         contentView.layer.borderWidth = 2
-        contentView.layer.borderColor = UIColor.red.cgColor 
+        contentView.layer.borderColor = UIColor.blue.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {

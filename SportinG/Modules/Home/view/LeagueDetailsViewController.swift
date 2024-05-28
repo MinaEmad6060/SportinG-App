@@ -319,7 +319,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         if indexPath.section==0 {
            
             
-            if(upcomingEvents.count != 0){
+            if(upcomingEvents.count > 0){
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue NewsCell") }
                 if let homeImageUrl = upcomingEvents[indexPath.row].home_team_logo,
                    let homeUrl = URL(string: homeImageUrl),
@@ -349,7 +349,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
            
            
             print(" section1 latestEvents.count  ::  \(latestEvents.count)")
-            if(latestEvents.count != 0){
+            if(latestEvents.count > 0){
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue Cell") }
                 
                 setCellDetails(sport: sport, indexPath: indexPath.row)
@@ -380,7 +380,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             }
         }else{
         
-            if(teamsLogos.count != 0){
+            if(teamsLogos.count > 0){
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as? LogoCollectionViewCell else { fatalError("Failed to dequeue LatestCell") }
                 if !teamsLogos[indexPath.row].isEmpty {
                    let teamUrl = URL(string: teamsLogos[indexPath.row])

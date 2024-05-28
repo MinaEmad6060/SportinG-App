@@ -18,26 +18,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eSw-CX-gyY">
-                        <rect key="frame" x="1" y="2" width="102" height="78.666666666666671"/>
+                        <rect key="frame" x="8" y="9" width="102" height="64.666666666666671"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="102" id="aDR-JQ-8UP"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ty6-2P-vsV">
-                        <rect key="frame" x="123" y="0.0" width="255" height="82"/>
+                        <rect key="frame" x="130" y="8" width="240" height="66"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ty6-2P-vsV" secondAttribute="trailing" constant="8" id="0zD-hH-fwb"/>
+                    <constraint firstAttribute="bottom" secondItem="ty6-2P-vsV" secondAttribute="bottom" constant="8" id="7vV-V2-1Jj"/>
                     <constraint firstItem="ty6-2P-vsV" firstAttribute="leading" secondItem="eSw-CX-gyY" secondAttribute="trailing" constant="20" id="9xk-xt-deS"/>
-                    <constraint firstAttribute="bottom" secondItem="eSw-CX-gyY" secondAttribute="bottom" constant="1" id="Egi-kZ-8rD"/>
-                    <constraint firstAttribute="trailing" secondItem="ty6-2P-vsV" secondAttribute="trailing" id="MkJ-nu-r9j"/>
-                    <constraint firstAttribute="bottom" secondItem="ty6-2P-vsV" secondAttribute="bottom" id="RfT-le-bFZ"/>
-                    <constraint firstItem="eSw-CX-gyY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="1" id="l41-NH-Yyf"/>
-                    <constraint firstItem="ty6-2P-vsV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rg2-a8-5K8"/>
-                    <constraint firstItem="eSw-CX-gyY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="xwh-Ie-lha"/>
+                    <constraint firstItem="ty6-2P-vsV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="KhM-Tx-tV2"/>
+                    <constraint firstItem="eSw-CX-gyY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="fsl-r0-NXb"/>
+                    <constraint firstAttribute="bottom" secondItem="eSw-CX-gyY" secondAttribute="bottom" constant="8" id="sXE-SK-vx4"/>
+                    <constraint firstItem="eSw-CX-gyY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="xCq-Gv-uxR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

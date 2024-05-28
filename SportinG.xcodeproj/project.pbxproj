@@ -176,6 +176,7 @@
 				51F3F57A2BFB7D1E000EA9B9 /* ViewController.swift */,
 				51BCFEAB2BFBC7540038BA84 /* SplashScreenController.swift */,
 				51F024CE2BFD13D60015A3A2 /* SportCustomCell.swift */,
+				40AE0D0C2C06662C0001C367 /* NoDataCollectionViewCell.swift */,
 				51F3F54D2BFB790F000EA9B9 /* Assets.xcassets */,
 				51E07CCB2C024F2000C88417 /* CoreDataUtils.swift */,
 			);
@@ -284,8 +285,6 @@
 				51F3F5742BFB7A9A000EA9B9 /* Model */,
 				51F3F5522BFB790F000EA9B9 /* Info.plist */,
 				51F3F54A2BFB790C000EA9B9 /* SportinG.xcdatamodeld */,
-				40AE0D0C2C06662C0001C367 /* NoDataCollectionViewCell.swift */,
-				40AE0D0D2C06662C0001C367 /* NoDataCollectionViewCell.xib */,
 			);
 			path = SportinG;
 			sourceTree = "<group>";
@@ -334,6 +333,7 @@
 				40BA07D52BFBB2EC009BB9C2 /* Details.storyboard */,
 				409F942D2BFC3D7E005E097E /* LeagueDetailsCollectionViewCell.xib */,
 				51F024CF2BFD13D60015A3A2 /* SportCustomCell.xib */,
+				40AE0D0D2C06662C0001C367 /* NoDataCollectionViewCell.xib */,
 				51F3F54F2BFB790F000EA9B9 /* LaunchScreen.storyboard */,
 			);
 			path = View;

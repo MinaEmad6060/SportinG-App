@@ -103,6 +103,8 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if teamDetailsResults.count > 0 {
+            imageNoData.isHidden = true
+            teamDetailsTableView.isHidden = false
             return teamDetailsResults.count
         }else{
             return 1
@@ -112,6 +114,7 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "SportCustomCell", for: indexPath) as! SportCustomCell
         if(teamDetailsResults.count > 0){
+            
 
             if let playerImageUrl = teamDetailsResults[indexPath.row].player_image,
                let playerUrl = URL(string: playerImageUrl){

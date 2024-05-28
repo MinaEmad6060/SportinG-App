@@ -41,19 +41,19 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="52" id="6BH-Bs-sVX"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1q-CF-wZX">
-                        <rect key="frame" x="16" y="132" width="95" height="28.666666666666657"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Home" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1q-CF-wZX">
+                        <rect key="frame" x="16" y="132" width="95" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Away" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3d9-nT-RBz">
-                        <rect key="frame" x="290" y="132" width="95" height="28.666666666666657"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Away" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3d9-nT-RBz">
+                        <rect key="frame" x="290" y="132" width="95" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -87,8 +87,10 @@
                 <constraint firstItem="aFk-7V-eDZ" firstAttribute="centerX" secondItem="BJU-0F-07f" secondAttribute="centerX" id="fpo-x8-qWo"/>
                 <constraint firstAttribute="trailing" secondItem="TH0-xK-k5T" secondAttribute="trailing" constant="20" id="j1b-vk-bgo"/>
                 <constraint firstAttribute="trailing" secondItem="3d9-nT-RBz" secondAttribute="trailing" constant="16" id="ngV-Cg-NsQ"/>
+                <constraint firstAttribute="bottom" secondItem="3d9-nT-RBz" secondAttribute="bottom" constant="16" id="psb-pa-ucJ"/>
                 <constraint firstItem="TH0-xK-k5T" firstAttribute="top" secondItem="lNp-kg-iap" secondAttribute="top" constant="20" id="qGh-m9-6O9"/>
                 <constraint firstItem="3d9-nT-RBz" firstAttribute="centerX" secondItem="TH0-xK-k5T" secondAttribute="centerX" id="rxj-7B-SGy"/>
+                <constraint firstAttribute="bottom" secondItem="F1q-CF-wZX" secondAttribute="bottom" constant="16" id="tuo-za-7YW"/>
                 <constraint firstItem="F1q-CF-wZX" firstAttribute="centerX" secondItem="e3R-ZS-Odg" secondAttribute="centerX" id="vDq-CP-g98"/>
                 <constraint firstItem="e3R-ZS-Odg" firstAttribute="leading" secondItem="lNp-kg-iap" secondAttribute="leading" constant="20" id="vb5-jS-Qao"/>
             </constraints>
