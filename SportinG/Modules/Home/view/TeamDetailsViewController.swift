@@ -38,6 +38,7 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var teamDetailsTableView: UITableView!
     
+    @IBOutlet weak var imageNoData: UIImageView!
     
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
@@ -47,6 +48,8 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         sportViewModel = SportViewModel()
         teamDetailsTableView.delegate = self
         teamDetailsTableView.dataSource = self
+        
+        imageNoData.isHidden = true
         
         self.teamDetailsTableView!.register(UINib(nibName: "SportCustomCell", bundle: nil), forCellReuseIdentifier: "SportCustomCell")
     }
@@ -109,6 +112,7 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "SportCustomCell", for: indexPath) as! SportCustomCell
         if(teamDetailsResults.count > 0){
+
             if let playerImageUrl = teamDetailsResults[indexPath.row].player_image,
                let playerUrl = URL(string: playerImageUrl){
                 cell.imgCustomCell.kf.setImage(with: playerUrl)
@@ -117,6 +121,9 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             self.coachName.text = teamDetailsResults[0].coach_name
             
             cell.labelCustomCell.text = teamDetailsResults[indexPath.row].player_name
+        }else{
+            imageNoData.isHidden = false
+            teamDetailsTableView.isHidden = true
         }
         
     

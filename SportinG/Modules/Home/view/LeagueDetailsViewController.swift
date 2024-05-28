@@ -59,6 +59,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         let nibCustomCell = UINib(nibName: "LeagueDetailsCollectionViewCell", bundle: nil)
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "upcomingCell")
         self.leagueDetailsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "latestCell")
+        let noDataCustomCell = UINib(nibName: "NoDataCollectionViewCell", bundle: nil)
+        self.leagueDetailsCollectionView.register(noDataCustomCell, forCellWithReuseIdentifier: "noData")
         
         let layout = UICollectionViewCompositionalLayout{sectionindex,enviroment in
             if sectionindex==0 {
@@ -182,13 +184,26 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
-        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-            items.forEach { item in
-                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-                let minScale: CGFloat = 0.6
-                let maxScale: CGFloat = 1
-                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-                item.transform = CGAffineTransform(scaleX: scale, y: scale)
+        if upcomingEvents.count > 0 {
+            section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                items.forEach { item in
+                    let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                    let minScale: CGFloat = 0.6
+                    let maxScale: CGFloat = 1
+                    let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                }
+            }
+        }
+        else{
+            section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                items.forEach { item in
+                    let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                    let minScale: CGFloat = 1.2
+                    let maxScale: CGFloat = 1.2
+                    let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                }
             }
         }
         updateFavButtonImage()
@@ -211,6 +226,17 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15
                                                         , bottom: 10, trailing: 15)
+        if latestEvents.count == 0{
+            section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                items.forEach { item in
+                    let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                    let minScale: CGFloat = 1.2
+                    let maxScale: CGFloat = 1.2
+                    let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                }
+            }
+        }
         updateFavButtonImage()
         return section
     }
@@ -228,16 +254,29 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
-        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-            items.forEach { item in
-                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-                let minScale: CGFloat = 0.8
-                let maxScale: CGFloat = 1.2
-                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-                item.transform = CGAffineTransform(scaleX: scale, y: scale)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 32, trailing: 0)
+        if teamsLogos.count > 0{
+            section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                items.forEach { item in
+                    let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                    let minScale: CGFloat = 0.8
+                    let maxScale: CGFloat = 1.2
+                    let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                }
+            }
+        }else{
+            section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                items.forEach { item in
+                    let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                    let minScale: CGFloat = 2.5
+                    let maxScale: CGFloat = 2.5
+                    let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                }
             }
         }
+        
         updateFavButtonImage()
         return section
     }
@@ -260,7 +299,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             if 0 < latestEvents.count && latestEvents.count < 50 {
                 return latestEvents.count
             }else if latestEvents.count == 0{
-                return 1
+                return 2
             }else {
                 return 10
             }
@@ -269,7 +308,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
             if teamsLogos.count > 0{
                 return teamsLogos.count
             }else {
-                return 1
+                return 2
             }
         }
         
@@ -278,9 +317,10 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.section==0 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue NewsCell") }
+           
             
             if(upcomingEvents.count != 0){
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue NewsCell") }
                 if let homeImageUrl = upcomingEvents[indexPath.row].home_team_logo,
                    let homeUrl = URL(string: homeImageUrl),
                    let awayImageUrl = upcomingEvents[indexPath.row].away_team_logo,
@@ -295,15 +335,23 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.awayTeam.text = upcomingEvents[indexPath.row].event_away_team
                 cell.dateOfMatch.text = upcomingEvents[indexPath.row].event_date
                 cell.timeOfMatch.text = upcomingEvents[indexPath.row].event_time
+                return cell
+
+            }else{
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noData", for: indexPath) as? NoDataCollectionViewCell else { fatalError("Failed to dequeue LatestCell") }
+//                if indexPath.row == 0 {
+//                    cell.noDataImage.image = UIImage(named: "")
+//                }
+                return cell
             }
             
-            return cell
         }else if indexPath.section==1 {
            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue Cell") }
-            
+           
             print(" section1 latestEvents.count  ::  \(latestEvents.count)")
             if(latestEvents.count != 0){
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath) as? LeagueDetailsCollectionViewCell else { fatalError("Failed to dequeue Cell") }
+                
                 setCellDetails(sport: sport, indexPath: indexPath.row)
                 if let homeImageUrl = homeImageUrl,
                    let homeUrl = URL(string: homeImageUrl),
@@ -321,31 +369,41 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.dateOfMatch.text = dateOfMatch
                 cell.timeOfMatch.text = latestEvents[indexPath.row].event_time
                 cell.scoreOfLiveMatch.text = scoreOfLiveMatch
+                return cell
 
             }else{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath)
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noData", for: indexPath) as? NoDataCollectionViewCell else { fatalError("Failed to dequeue LatestCell") }
+                if indexPath.row == 0 {
+                    cell.noDataImage.image = UIImage(named: "")
+                }
+                return cell
             }
-            return cell
         }else{
-            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as? LogoCollectionViewCell else { fatalError("Failed to dequeue LatestCell") }
-            
+        
             if(teamsLogos.count != 0){
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as? LogoCollectionViewCell else { fatalError("Failed to dequeue LatestCell") }
                 if !teamsLogos[indexPath.row].isEmpty {
                    let teamUrl = URL(string: teamsLogos[indexPath.row])
                     cell.logoOfTeam?.kf.setImage(with: teamUrl)
                 } else {
                     cell.logoOfTeam.image = imagePlaceHolder
                 }
+                return cell
+            }else{
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noData", for: indexPath) as? NoDataCollectionViewCell else { fatalError("Failed to dequeue LatestCell") }
+                if indexPath.row == 0 {
+                    cell.noDataImage.image = UIImage(named: "")
+                }
+                return cell
             }
             
-            return cell
+            
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == 2 && teamsLogos.count != 0{
             let storyboard = UIStoryboard(name: "Details", bundle: nil)
             if let teamDetailsController = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController{
                 teamDetailsController.teamDetailsUrl = sportViewModel?.getTeamsDetailsFormatedUrl(sport: sport, met: "Teams", teamId: "\(teamsKies[indexPath.row])") ?? ""
