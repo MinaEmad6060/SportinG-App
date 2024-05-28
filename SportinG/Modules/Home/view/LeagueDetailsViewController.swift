@@ -84,7 +84,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
 
     
     override func viewWillAppear(_ animated: Bool) {
-        sportViewModel?.getLeagueDetailsFromNetworkService(url: eventsUrl+"&from=2024-05-29&to=2025-05-29")
+        sportViewModel?.getSportLeaguesDetailsFromNetworkService(url: eventsUrl+"&from=2024-05-29&to=2025-05-29")
         sportViewModel?.bindUpcomingToViewController = {
             self.numberOfUpcoming = self.sportViewModel?.leaguesUpcomingDetails?.result.count ?? 10
             for i in 0..<self.numberOfUpcoming {

@@ -65,7 +65,7 @@ class SportViewModel: SportViewModelProtocol{
         return (url,sport)
     }
     
-    func getSportLeaguesFromNetworkService(url: String) {
+    func getSportLeaguesDetailsFromNetworkService(url: String) {
         fetchDataFromApi.getSportData(url: url) { sportDetails in
             self.leaguesUpcomingDetails = sportDetails
         }
@@ -81,14 +81,6 @@ class SportViewModel: SportViewModelProtocol{
     }
     
 
-    
-    
-    func getLeagueDetailsFromNetworkService(url: String) {
-        fetchDataFromApi.getSportData (url: url){ sportDetails in
-            self.leaguesUpcomingDetails = sportDetails
-        }
-    }
-    
     func getLatestDetailsFromNetworkService(url: String) {
         fetchDataFromApi.getSportData (url: url){ sportDetails in
             self.leagueLatestDetails = sportDetails

@@ -37,7 +37,7 @@ class SportLeaguesController: UIViewController , UITableViewDelegate, UITableVie
         
         self.sportLeaguesTable!.register(UINib(nibName: "SportCustomCell", bundle: nil), forCellReuseIdentifier: "SportCustomCell")
         
-        sportViewModel?.getSportLeaguesFromNetworkService(url: url)
+        sportViewModel?.getSportLeaguesDetailsFromNetworkService(url: url)
         sportViewModel?.bindUpcomingToViewController = {
             self.numberOfLeagues = self.sportViewModel?.leaguesUpcomingDetails?.result.count ?? 10
             
