@@ -41,30 +41,7 @@ class SportViewModel: SportViewModelProtocol{
     }
   
     
-    func setSportUrl(selectedSport: Int) -> (String, String){
-        var url = ""
-        var sport = ""
-        switch selectedSport {
-            case 0:
-            url = fetchDataFromApi.formatURL(sport: "football", met: "Leagues")
-                sport = "football"
-            case 1:
-            url = fetchDataFromApi.formatURL(sport: "basketball", met: "Leagues")
-                sport = "basketball"
-            case 2:
-            url = fetchDataFromApi.formatURL(sport: "cricket", met: "Leagues")
-                sport = "cricket"
-            case 3:
-            url = fetchDataFromApi.formatURL(sport: "tennis", met: "Leagues")
-                sport = "tennis"
-            default:
-                url = ""
-                sport = ""
-                break
-        }
-        return (url,sport)
-    }
-    
+   
     func getSportLeaguesDetailsFromNetworkService(url: String) {
         fetchDataFromApi.getSportData(url: url) { sportDetails in
             self.leaguesUpcomingDetails = sportDetails
@@ -128,6 +105,31 @@ class SportViewModel: SportViewModelProtocol{
     func getFavoriteLeagues() -> [NSManagedObject] {
         return favoriteLeagues
     }
+    
+    func setSportUrl(selectedSport: Int) -> (String, String){
+        var url = ""
+        var sport = ""
+        switch selectedSport {
+            case 0:
+            url = fetchDataFromApi.formatURL(sport: "football", met: "Leagues")
+                sport = "football"
+            case 1:
+            url = fetchDataFromApi.formatURL(sport: "basketball", met: "Leagues")
+                sport = "basketball"
+            case 2:
+            url = fetchDataFromApi.formatURL(sport: "cricket", met: "Leagues")
+                sport = "cricket"
+            case 3:
+            url = fetchDataFromApi.formatURL(sport: "tennis", met: "Leagues")
+                sport = "tennis"
+            default:
+                url = ""
+                sport = ""
+                break
+        }
+        return (url,sport)
+    }
+    
 
     
 }

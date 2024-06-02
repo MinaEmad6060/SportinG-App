@@ -334,9 +334,6 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate, U
 
             }else{
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noData", for: indexPath) as? NoDataCollectionViewCell else { fatalError("Failed to dequeue LatestCell") }
-//                if indexPath.row == 0 {
-//                    cell.noDataImage.image = UIImage(named: "")
-//                }
                 return cell
             }
             

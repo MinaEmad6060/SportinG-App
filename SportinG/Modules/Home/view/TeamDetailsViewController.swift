@@ -83,10 +83,6 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 teamDetails.coach_name = self.sportViewModel?.leagueTeamsDetails?.result[0].coaches?[0].coach_name
                 teamDetails.player_image = self.sportViewModel?.leagueTeamsDetails?.result[0].players?[i].player_image
                 teamDetails.player_name = self.sportViewModel?.leagueTeamsDetails?.result[0].players?[i].player_name
-                
-//                teamDetails.team_logo = self.sportViewModel?.leagueTeamsDetails?.result[0].team_logo
-//                teamDetails.team_name = self.sportViewModel?.leagueTeamsDetails?.result[0].team_name
-                
                 self.teamDetailsResults.append(teamDetails)
             }
             
@@ -116,7 +112,6 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                let playerUrl = URL(string: playerImageUrl){
                 cell.imgCustomCell.kf.setImage(with: playerUrl)
             }
-//            self.teamName.text = self.sportViewModel?.leagueTeamsDetails?.result[0].team_name
             self.coachName.text = teamDetailsResults[0].coach_name
             
             cell.labelCustomCell.text = teamDetailsResults[indexPath.row].player_name

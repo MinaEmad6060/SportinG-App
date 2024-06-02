@@ -134,9 +134,6 @@ class CustomSportCell: UICollectionViewCell{
         nameLabel.textAlignment = .center
         nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         
-        //backgroundColor = UIColor.lightGray
-        
-        //contentView.backgroundColor = UIColor.clear
         contentView.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
         contentView.backgroundColor = UIColor(red: 0.25, green: 0.5, blue: 1.0, alpha: 0.05)
